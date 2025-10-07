@@ -1,0 +1,9 @@
+query TestHygraph {
+  frontpage(where: { id: "clfphu0ts2qwi0bw7k89o3da6" }) {
+    heroSection {
+      title {
+        markdown
+      }
+    }
+  }
+}

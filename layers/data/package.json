@@ -1,0 +1,13 @@
+{
+  "name": "data",
+  "version": "1.0.0",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5",
+    "nuxt": "latest",
+    "nuxt-graphql-client": "^0.2.46"
+  }
+}
