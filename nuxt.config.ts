@@ -3,7 +3,11 @@ export default defineNuxtConfig({
   extends: ['./layers/data'],
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-
+  'graphql-client': {
+    codegen: {
+      silent: true,
+    },
+  },
   modules: [
     'nuxt-graphql-client',
     '@nuxt/eslint',
@@ -12,16 +16,4 @@ export default defineNuxtConfig({
     '@nuxt/image',
   ],
   css: ['~/assets/scss/main.scss'],
-  'graphql-client': {
-    codegen: {
-      avoidOptionals: true,
-    },
-  },
-
-  runtimeConfig: {
-    public: {
-      GQL_HOST:
-        'https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/clfo9ihvf0i4h01ugdp6i5rf1/master',
-    },
-  },
 })
