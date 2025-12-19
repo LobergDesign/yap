@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { data, error, status, pending } = await useTestHygraph()
+const { data } = await useFrontpage();
 </script>
 
 <template>
@@ -9,7 +9,7 @@ const { data, error, status, pending } = await useTestHygraph()
     <pre>
       {{ data }}
     </pre>
-    <pre>
+    <!-- <pre>
 
     error;  {{ error }}
     </pre>
@@ -18,7 +18,7 @@ const { data, error, status, pending } = await useTestHygraph()
     </pre>
     <pre>
     pending:  {{ pending }}
-    </pre>
+    </pre> -->
   </div>
 </template>
 

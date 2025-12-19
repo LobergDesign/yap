@@ -1,0 +1,9 @@
+query Frontpage($id: ID) {
+  frontpage(where: { id: $id }) {
+    heroSection {
+      title {
+        markdown
+      }
+    }
+  }
+}

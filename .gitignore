@@ -22,3 +22,16 @@ logs
 .env
 .env.*
 !.env.example
+
+
+# claude
+.claude
+
+# Project TODO
+TODO.md
+
+# GraphQL Codegen
+app/generated/
+
+# nuxt font
+.data
