@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { data } = await useFrontpage();
+const { data } = useFrontpage();
 </script>
 
 <template>
