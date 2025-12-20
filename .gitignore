@@ -26,6 +26,10 @@ logs
 
 # claude
 .claude
+CLAUDE.md
+
+# gemini
+GEMINI.md
 
 # Project TODO
 TODO.md

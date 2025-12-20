@@ -5,6 +5,7 @@
     "": {
       "name": "yap",
       "dependencies": {
+        "@graphql-typed-document-node/core": "^3.2.0",
         "@lobergdesign/dot-grid": "^1.0.6",
         "@nuxt/fonts": "^0.12.1",
         "@nuxt/icon": "^2.1.1",

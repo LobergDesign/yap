@@ -17,6 +17,7 @@ const config: CodegenConfig = {
       plugins: ['typescript', 'typescript-operations', 'typed-document-node'],
       config: {
         skipTypename: false,
+        useTypeImports: true,
         scalars: {
           DateTime: 'string',
           JSON: 'any',
