@@ -1,4 +1,4 @@
-query Frontpage($id: ID) {
+query GetFrontpage($id: ID) {
   frontpage(where: { id: $id }) {
     heroSection {
       title {

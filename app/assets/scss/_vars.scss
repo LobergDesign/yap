@@ -1,0 +1,26 @@
+$brand-dark: #121212;
+$brand-light: #eaeaea;
+$brand-accent-dark: #c9d6e2;
+
+$light-theme-colors: (
+  'primary': $brand-light,
+  'secondary': $brand-dark,
+  'accent': $brand-accent-dark,
+);
+
+$dark-theme-colors: (
+  'primary': $brand-dark,
+  'secondary': $brand-light,
+  'accent': $brand-accent-dark,
+);
+
+@function theme-color($key) {
+  @return var(--#{$key});
+}
+$default-theme: $dark-theme-colors;
+
+:root {
+  @each $name, $color in $default-theme {
+    --#{$name}: #{$color};
+  }
+}

@@ -17,21 +17,25 @@ export default defineNuxtConfig({
 
   // Route-level caching with SWR
   routeRules: {
-    // Cache all pages for 2 hours (7200 seconds)
-    '/**': {
-      swr: 7200,
-    },
+    // Cache all pages for 2 hours in production only
+    '/**':
+      process.env.NODE_ENV === 'production'
+        ? {
+            swr: 7200,
+          }
+        : {},
     // Don't cache API routes (called during page regeneration only)
-    '/api/**': {
+    'server/api/**': {
       cache: false,
     },
   },
   modules: [
     '@nuxt/eslint',
-    '@nuxt/fonts',
+    '@nuxtjs/google-fonts',
     '@nuxt/icon',
     '@nuxt/image',
     'nuxt-security',
+    '@nuxt/hints',
   ],
   css: ['~/assets/scss/main.scss'],
   image: {
@@ -45,11 +49,9 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          // Uncomment when you have global vars/mixins:
-          // additionalData: `
-          //   @use "@/assets/scss/settings/vars.scss" as *;
-          //   @use "@/assets/scss/tools/mixins.scss" as *;
-          // `,
+          additionalData: `
+            @use "@/assets/scss/_vars.scss" as *;
+          `,
         },
       },
     },
@@ -63,6 +65,13 @@ export default defineNuxtConfig({
       },
     },
   },
+  googleFonts: {
+    families: {
+      'Nunito Sans': {
+        wght: '200..900',
+      },
+    },
+  },
 
   // security
   security: {
@@ -73,12 +82,11 @@ export default defineNuxtConfig({
           'data:',
           'https://media.graphassets.com', // hygraph images
         ],
-        'connect-src': [
-          "'self'", // API calls to /api/cms
-        ],
+        'style-src': ["'self'", "'unsafe-inline'"],
+        'connect-src': ["'self'"],
       },
       strictTransportSecurity: {
-        maxAge: 31536000,
+        maxAge: 31536000, // 1 year
         includeSubdomains: true,
       },
     },

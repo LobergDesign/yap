@@ -1,3 +1,10 @@
-body {
-  background-color: gainsboro;
+@use 'global' as *;
+@use '@lobergdesign/dot-grid';
+@use 'typography' as *;
+
+// Override dot-grid CSS variables
+:root {
+  --grid-w-max-width: 190rem;
+  --grid-w-min-width: 36vw;
+  --grid-w-width: 96vw;
 }

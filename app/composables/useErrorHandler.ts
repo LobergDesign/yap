@@ -18,7 +18,6 @@ export const useErrorHandler = () => {
    */
   const handleError = (error: unknown): void => {
     const parsed = parseError(error);
-
     // Log all errors in development
     if (isDev) {
       console.error('[Error Handler]', {

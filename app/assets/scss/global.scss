@@ -1,0 +1,16 @@
+@use '@/assets/scss/vars.scss' as *;
+:root {
+  --grid-w-max-width: 100px;
+  --grid-w-min-width: 15vw;
+}
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  font-style: normal;
+  background-color: theme-color('primary');
+  color: theme-color('secondary');
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

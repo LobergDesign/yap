@@ -1,24 +1,24 @@
 import {
-  FrontpageDocument,
-  type FrontpageQuery,
-  type FrontpageQueryVariables,
-} from '~/generated/graphql';
+  GetFrontpageDocument,
+  type GetFrontpageQuery,
+  type GetFrontpageQueryVariables,
+} from '~/types/generated/graphql';
 
 /**
  * Composable for fetching frontpage data from CMS
  * Handles caching, errors, and SSR
  */
-export const useFrontpage = () => {
-  const { executeQuery } = useGraphQL<FrontpageQuery, FrontpageQueryVariables>(
-    FrontpageDocument,
-    {
-      id: CONTENT_IDS.FRONTPAGE,
-    },
-  );
+export const useFrontpage = async () => {
+  const { executeQuery } = useGraphQL<
+    GetFrontpageQuery,
+    GetFrontpageQueryVariables
+  >(GetFrontpageDocument, {
+    id: CONTENT_IDS.FRONTPAGE,
+  });
   const { handleError } = useErrorHandler();
 
   const { data, error, pending, refresh, status } =
-    useAsyncData<FrontpageQuery>('frontpage', () => executeQuery(), {
+    await useAsyncData<GetFrontpageQuery>('frontpage', () => executeQuery(), {
       // Use Nuxt's built-in cache if data already exists
       getCachedData: (key) =>
         useNuxtApp().payload.data[key] ?? useNuxtData(key).data.value,

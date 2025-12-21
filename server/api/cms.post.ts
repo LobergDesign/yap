@@ -1,18 +1,8 @@
-import { print } from 'graphql';
-
-interface GraphQLError {
-  message: string;
-  extensions?: {
-    code?: string;
-    [key: string]: unknown;
-  };
-  path?: string[];
-  locations?: Array<{ line: number; column: number }>;
-}
+import { print, type GraphQLFormattedError } from 'graphql';
 
 interface GraphQLResponse<TData = unknown> {
   data?: TData;
-  errors?: GraphQLError[];
+  errors?: GraphQLFormattedError[];
 }
 
 export default defineEventHandler(async (event) => {
@@ -69,17 +59,12 @@ export default defineEventHandler(async (event) => {
 
     return response.data;
   } catch (error: unknown) {
-    // Type guard for Error objects
-    const err = error as Error & {
-      statusCode?: number;
-      name?: string;
-      code?: string;
-      message?: string;
-      cause?: unknown;
-    };
+    // Re-throw if already a Nuxt error (has statusCode)
+    if (error && typeof error === 'object' && 'statusCode' in error)
+      throw error;
 
-    // Already a createError - re-throw
-    if (err.statusCode) throw err;
+    // Type assertion for error with Node.js error code property
+    const err = error as Error & { code?: string };
 
     // Network/fetch errors
     if (err.name === 'FetchError') {

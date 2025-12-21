@@ -35,7 +35,7 @@ GEMINI.md
 TODO.md
 
 # GraphQL Codegen
-app/generated/
+app/types/generated/
 
 # nuxt font
 .data

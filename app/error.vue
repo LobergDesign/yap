@@ -56,7 +56,7 @@ const handleClearError = () => clearError({ redirect: '/' });
 </script>
 
 <template>
-  <div>
+  <div v-if="error">
     <h1>{{ error?.statusCode || 500 }} - {{ displayError.title }}</h1>
     <p>{{ displayError.message }}</p>
 
