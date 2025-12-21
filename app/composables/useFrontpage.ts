@@ -1,9 +1,20 @@
-import { FrontpageDocument, type FrontpageQuery } from '~/generated/graphql';
+import {
+  FrontpageDocument,
+  type FrontpageQuery,
+  type FrontpageQueryVariables,
+} from '~/generated/graphql';
 
+/**
+ * Composable for fetching frontpage data from CMS
+ * Handles caching, errors, and SSR
+ */
 export const useFrontpage = () => {
-  const { executeQuery } = useGraphQL(FrontpageDocument, {
-    id: CONTENT_IDS.FRONTPAGE,
-  });
+  const { executeQuery } = useGraphQL<FrontpageQuery, FrontpageQueryVariables>(
+    FrontpageDocument,
+    {
+      id: CONTENT_IDS.FRONTPAGE,
+    },
+  );
   const { handleError } = useErrorHandler();
 
   const { data, error, pending, refresh, status } =

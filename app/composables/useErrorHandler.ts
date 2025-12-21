@@ -1,5 +1,12 @@
+import type { NuxtError } from '#app';
+
+interface ParsedError {
+  statusCode: number;
+  message: string;
+  data: unknown;
+}
+
 /**
- * Minimal error handler for portfolio app
  * Routes fatal errors (500+, 404) to error.vue page
  * Logs other errors for debugging
  */
@@ -9,7 +16,7 @@ export const useErrorHandler = () => {
   /**
    * Handle errors - show error page for fatal errors, log others
    */
-  const handleError = (error: unknown) => {
+  const handleError = (error: unknown): void => {
     const parsed = parseError(error);
 
     // Log all errors in development
@@ -38,20 +45,13 @@ export const useErrorHandler = () => {
   /**
    * Parse error into consistent format
    */
-  const parseError = (error: unknown) => {
+  const parseError = (error: unknown): ParsedError => {
     // Nuxt error format
-    if (error && typeof error === 'object' && 'statusCode' in error) {
-      const err = error as {
-        statusCode?: number;
-        statusMessage?: string;
-        message?: string;
-        data?: unknown;
-      };
-
+    if (isNuxtError(error)) {
       return {
-        statusCode: err.statusCode || 500,
-        message: err.statusMessage || err.message || 'An error occurred',
-        data: err.data,
+        statusCode: error.statusCode || 500,
+        message: error.statusMessage || error.message || 'An error occurred',
+        data: error.data,
       };
     }
 
@@ -73,12 +73,17 @@ export const useErrorHandler = () => {
   };
 
   /**
+   * Type guard for Nuxt errors
+   */
+  const isNuxtError = (error: unknown): error is NuxtError =>
+    error !== null && typeof error === 'object' && 'statusCode' in error;
+
+  /**
    * Determine if error should show error.vue page
    * Show for: 404 (not found) and 500+ (server errors)
    */
-  const shouldShowErrorPage = (statusCode: number): boolean => {
-    return statusCode === 404 || statusCode >= 500;
-  };
+  const shouldShowErrorPage = (statusCode: number): boolean =>
+    statusCode === 404 || statusCode >= 500;
 
   return {
     handleError,
