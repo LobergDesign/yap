@@ -84,11 +84,19 @@ export default defineNuxtConfig({
         ],
         'style-src': ["'self'", "'unsafe-inline'"],
         'connect-src': ["'self'"],
+        'script-src': ["'self'", "'unsafe-inline'"],
       },
       strictTransportSecurity: {
         maxAge: 31536000, // 1 year
         includeSubdomains: true,
       },
     },
+  },
+  imports: {
+    dirs: [
+      // Scan top-level composables
+      '~/composables',
+      '~/composables/**',
+    ],
   },
 });

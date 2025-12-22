@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import RitchTextEditor from '~/components/ui/ritchTextEditor.vue';
+
 const wght = ref(200);
 const toggle = () => (wght.value = wght.value === 200 ? 900 : 200);
 const { data } = await useFrontpage();
@@ -13,9 +15,11 @@ const { data } = await useFrontpage();
         toggle ({{ wght }})
       </button>
     </div>
-    <pre v-if="data">
-      {{ data }}
-    </pre>
+
+    <RitchTextEditor
+      v-if="data?.frontpage?.heroSection?.title"
+      :data="data?.frontpage?.heroSection?.title"
+    />
     <div class="grid-w">
       <div class="grid-r">
         <div class="grid-c-12 grid-c-md-6 grid-c-lg-4">Column 1</div>
