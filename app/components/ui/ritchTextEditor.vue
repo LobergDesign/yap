@@ -12,7 +12,7 @@ defineProps<{
 </script>
 <template>
   <ClientOnly>
-    <div v-html="DOMPurify.sanitize(data.html)"></div>
+    <div v-html="DOMPurify.sanitize(data.html)" />
     <template #fallback>
       <div>{{ data.text }}</div>
     </template>

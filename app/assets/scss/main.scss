@@ -7,4 +7,8 @@
   --grid-w-max-width: 190rem;
   --grid-w-min-width: 36vw;
   --grid-w-width: 96vw;
+  --grid-columns: 8;
+}
+.grid-r {
+  grid-template-columns: repeat(var(--grid-columns, 8), 1fr);
 }
