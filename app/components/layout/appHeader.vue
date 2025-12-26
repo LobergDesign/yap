@@ -15,7 +15,7 @@
         <li class="grid-c-1">
           <NuxtLink to="/">Contact</NuxtLink>
         </li>
-        <li class="grid-c-4">weather module here</li>
+        <li class="grid-c-4"><DynamicWeather /></li>
       </ul>
     </div>
   </header>

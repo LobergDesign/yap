@@ -9,7 +9,11 @@ export default defineNuxtConfig({
     graphqlToken: process.env.GQL_TOKEN,
     revalidateSecret: process.env.REVALIDATE_SECRET,
   },
-
+  weatherModule: {
+    latitude: 55.676098, // Copenhagen
+    longitude: 12.568337, // Copenhagen
+    iconSize: 'clamp(30px, 5vw, 50px)',
+  },
   // Deployment preset (change to 'netlify' if using Netlify)
   nitro: {
     preset: 'vercel',
@@ -36,6 +40,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-security',
     '@nuxt/hints',
+    'nuxt-weather-module',
   ],
   css: ['~/assets/scss/main.scss'],
   image: {
