@@ -24,3 +24,9 @@ $default-theme: $dark-theme-colors;
     --#{$name}: #{$color};
   }
 }
+
+// transition variable
+$transition--cubic: cubic-bezier(0.4, 0, 0.1, 1);
+$transition: 0.5s $transition--cubic;
+$transition--slow: 0.7s $transition--cubic;
+$transition--fast: 0.4s $transition--cubic;

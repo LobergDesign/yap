@@ -15,9 +15,14 @@
         <li class="grid-c-1">
           <NuxtLink to="/">Contact</NuxtLink>
         </li>
+        <li class="grid-c-4">weather module here</li>
       </ul>
     </div>
   </header>
 </template>
-
-<style></style>
+<style src="./_appHeaderShared.scss" />
+<style lang="scss" scoped>
+header {
+  padding: clamp(14px, 2vw, 18px) 0;
+}
+</style>

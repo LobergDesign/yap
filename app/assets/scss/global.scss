@@ -14,3 +14,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+ul:not(.markdown) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a:not(.markdown) {
+  text-decoration: none;
+}

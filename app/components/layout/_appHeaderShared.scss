@@ -1,0 +1,11 @@
+header {
+  a {
+    font-size: 12px;
+    color: theme-color('text-primary');
+    font-variation-settings: 'wght' 300;
+    transition: font-variation-settings $transition--fast;
+    &:hover {
+      font-variation-settings: 'wght' 800;
+    }
+  }
+}

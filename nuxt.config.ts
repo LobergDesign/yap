@@ -32,7 +32,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxtjs/google-fonts',
-    '@nuxt/icon',
+    'nuxt-icons',
     '@nuxt/image',
     'nuxt-security',
     '@nuxt/hints',
@@ -83,7 +83,7 @@ export default defineNuxtConfig({
           'https://media.graphassets.com', // hygraph images
         ],
         'style-src': ["'self'", "'unsafe-inline'"],
-        'connect-src': ["'self'"],
+        'connect-src': ["'self'", 'https://api.open-meteo.com'],
         'script-src': ["'self'", "'unsafe-inline'"],
       },
       strictTransportSecurity: {

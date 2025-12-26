@@ -13,7 +13,7 @@
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.2.0",
     "@lobergdesign/dot-grid": "^1.0.6",
-    "@nuxt/icon": "^2.1.1",
+    "nuxt-icons": "^4.0.0",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxt/image": "^2.0.0",
     "graphql": "^16.12.0",
