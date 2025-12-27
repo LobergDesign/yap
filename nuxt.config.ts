@@ -10,9 +10,7 @@ export default defineNuxtConfig({
     revalidateSecret: process.env.REVALIDATE_SECRET,
   },
   weatherModule: {
-    latitude: 55.676098, // Copenhagen
-    longitude: 12.568337, // Copenhagen
-    iconSize: 'clamp(30px, 5vw, 50px)',
+    iconSize: 'clamp(25px, 2vw, 30px)',
   },
   // Deployment preset (change to 'netlify' if using Netlify)
   nitro: {
