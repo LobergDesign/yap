@@ -10,10 +10,10 @@ export const useSettings = () => {
 
   const themes = [
     { value: 'default', label: 'Default' },
-    { value: 'ocean', label: 'Ocean Blue' },
-    { value: 'forest', label: 'Forest Green' },
-    { value: 'sunset', label: 'Sunset Warm' },
-    { value: 'mono', label: 'Monochrome' },
+    { value: 'theme-1', label: 'Theme 1' },
+    { value: 'theme-2', label: 'Theme 2' },
+    { value: 'theme-3', label: 'Theme 3' },
+    { value: 'theme-4', label: 'Theme 4' },
   ];
 
   const applySettings = () => {
@@ -35,9 +35,15 @@ export const useSettings = () => {
       const savedTheme = localStorage.getItem('settings-theme');
       const savedMode = localStorage.getItem('settings-mode');
 
-      if (savedFont) font.value = savedFont;
-      if (savedTheme) theme.value = savedTheme;
-      if (savedMode) mode.value = savedMode;
+      if (savedFont && fonts.some((f) => f.value === savedFont)) {
+        font.value = savedFont;
+      }
+      if (savedTheme && themes.some((t) => t.value === savedTheme)) {
+        theme.value = savedTheme;
+      }
+      if (savedMode && ['light', 'dark'].includes(savedMode)) {
+        mode.value = savedMode;
+      }
 
       applySettings();
     }

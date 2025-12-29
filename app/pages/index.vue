@@ -4,9 +4,13 @@ const { data } = await useFrontpage();
 
 <template>
   <main>
-    <UiRitchTextEditor
+    <Hero
+      v-if="data?.frontpage?.heroSection"
+      :hero="data?.frontpage?.heroSection"
+    />
+    <!-- <UiRitchTextEditor
       v-if="data?.frontpage?.heroSection?.title"
       :data="data?.frontpage?.heroSection?.title"
-    />
+    /> -->
   </main>
 </template>

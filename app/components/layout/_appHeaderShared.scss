@@ -7,17 +7,14 @@
   a {
     color: theme-color('secondary');
   }
-  &__logo {
-    font-variation-settings: 'wght' 800;
-  }
   &__nav-item {
     font-variation-settings: 'wght' 300;
     transition: font-variation-settings $transition--fast;
+    sub {
+      color: theme-color('accent');
+    }
     &:hover {
       font-variation-settings: 'wght' 900;
     }
-  }
-  sub {
-    color: theme-color('accent');
   }
 }

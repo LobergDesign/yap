@@ -14,7 +14,9 @@ onMounted(() => {
   <header class="header grid-w">
     <ul class="grid-r">
       <li class="grid-c-1 place-c-l">
-        <NuxtLink to="/" class="header__logo">(yap)</NuxtLink>
+        <NuxtLink to="/" class="header__logo">
+          <LogoSmall />
+        </NuxtLink>
       </li>
       <li class="grid-c-1 place-c-l">
         <NuxtLink to="/" class="header__nav-item"
@@ -47,20 +49,21 @@ onMounted(() => {
 <style lang="scss" scoped>
 .header {
   padding: clamp(5px, 0.8vw, 10px) 0;
-  span,
-  time {
-    display: inline-block;
-    vertical-align: middle;
-    color: #5d5d5d;
-    font-variation-settings: 'wght' 300;
-  }
-  time {
-    margin: 0 6px;
-    font-size: 11px;
-  }
+
   &__location-info {
     display: flex;
     align-items: center;
+    span,
+    time {
+      display: inline-block;
+      vertical-align: middle;
+      color: #5d5d5d;
+      font-variation-settings: 'wght' 300;
+    }
+    time {
+      margin: 0 6px;
+      font-size: 11px;
+    }
   }
 }
 </style>

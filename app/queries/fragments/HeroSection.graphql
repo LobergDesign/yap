@@ -1,0 +1,4 @@
+fragment HeroFields on Hero {
+  headline
+  text
+}

@@ -1,10 +1,9 @@
+#import "./fragments/HeroSection.graphql"
+
 query GetFrontpage($id: ID) {
   frontpage(where: { id: $id }) {
     heroSection {
-      title {
-        html
-        text
-      }
+      ...HeroFields
     }
   }
 }

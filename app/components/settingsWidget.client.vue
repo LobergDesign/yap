@@ -72,6 +72,7 @@ watch([font, theme, mode], () => applySettings());
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.2);
   z-index: 100;
   color: theme-color('primary');
   transition: transform 200ms ease-out;
@@ -80,7 +81,9 @@ watch([font, theme, mode], () => applySettings());
     transform: scale(1.05) rotate(90deg);
   }
 }
-
+[data-mode='dark'] .trigger {
+  box-shadow: 0 0px 10px rgba(255, 255, 255, 0.6);
+}
 .panel {
   position: fixed;
   bottom: 5rem;
@@ -92,6 +95,9 @@ watch([font, theme, mode], () => applySettings());
   border-radius: 1rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   z-index: 100;
+}
+[data-mode='dark'] .panel {
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
 }
 
 .close {

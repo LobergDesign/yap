@@ -1,6 +1,7 @@
 @use 'global' as *;
 @use '@lobergdesign/dot-grid';
 @use 'typography' as *;
+@use 'utils' as *;
 
 // Override dot-grid CSS variables
 :root {
