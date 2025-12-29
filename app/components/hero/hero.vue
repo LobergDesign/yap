@@ -1,42 +1,65 @@
 <script lang="ts" setup>
 import type { HeroFieldsFragment } from '~/types/generated/graphql';
-import { gsap } from 'gsap';
 const { hero } = defineProps<{
   hero: HeroFieldsFragment;
 }>();
 
-// const primaryColor = '20, 20, 18';
-// const secondaryColor = '228, 241, 222';
-// const accentColor = '91, 114, 79';
+const primaryColor = ref(hexToRgb('#141412'));
+const secondaryColor = ref(hexToRgb('#5B724F'));
+const accentColor = ref(hexToRgb('#E4F1DE'));
 
-// const primaryColor = '91, 114, 79';
-// const secondaryColor = '228, 241, 222';
-// const accentColor = '20, 20, 18';
+const { theme, mode } = useSettings();
 
-// const primaryColor = '228, 241, 222';
-// const secondaryColor = '91, 114, 79';
-// const accentColor = '20, 20, 18';
-const primaryColor = '20, 20, 18';
-const secondaryColor = '91, 114, 79';
-const accentColor = '228, 241, 222';
-
-const b1 = `linear-gradient(217deg, rgba(${primaryColor},.9), rgba(${primaryColor},0) 70.71%),  linear-gradient(127deg, rgba(${secondaryColor},.9), rgba(0,${primaryColor}) 70.71%), linear-gradient(336deg, rgba(${accentColor},.9), rgba(0,${secondaryColor}) 70.71%)`;
-
-const b2 = `linear-gradient(17deg, rgba(${primaryColor},.7), rgba(${primaryColor},0) 70.71%), linear-gradient(200deg, rgba(${secondaryColor}, .9), rgba(${secondaryColor},.2) 70.71%),  linear-gradient(336deg, rgba(${accentColor},.8), rgba(0,${secondaryColor}.1) 70.71%)`;
-
-const herorRef = useTemplateRef('heroRef');
-onMounted(() => {
-  gsap.fromTo(
-    herorRef.value,
-    { width: '100%', height: '100%', background: b1 },
-    { ease: 'none', duration: 20, background: b2, repeat: -1, yoyo: true },
-  );
-});
+watch(
+  [theme, mode],
+  () => {
+    if (theme.value === 'theme-1') {
+      primaryColor.value = hexToRgb(
+        mode.value === 'light' ? '#5B724F' : '#141412',
+      );
+      secondaryColor.value = hexToRgb(
+        mode.value === 'dark' ? '#5B724F' : '#141412',
+      );
+      accentColor.value = hexToRgb('#E4F1DE');
+    } else if (theme.value === 'theme-2') {
+      primaryColor.value = hexToRgb(
+        mode.value === 'light' ? '#10b981' : '#064e3b',
+      );
+      secondaryColor.value = hexToRgb(
+        mode.value === 'dark' ? '#10b981' : '#064e3b',
+      );
+      accentColor.value = hexToRgb(
+        mode.value === 'light' ? '#d1fae5' : '#34d399',
+      );
+    } else if (theme.value === 'theme-3') {
+      primaryColor.value = hexToRgb(
+        mode.value === 'light' ? '#f97316' : '#7c2d12',
+      );
+      secondaryColor.value = hexToRgb(
+        mode.value === 'dark' ? '#f97316' : '#7c2d12',
+      );
+      accentColor.value = hexToRgb(
+        mode.value === 'light' ? '#fff7ed' : '#fb923c',
+      );
+    } else if (theme.value === 'theme-4') {
+      primaryColor.value = hexToRgb(
+        mode.value === 'light' ? '#737373' : '#0a0a0a',
+      );
+      secondaryColor.value = hexToRgb(
+        mode.value === 'dark' ? '#737373' : '#0a0a0a',
+      );
+      accentColor.value = hexToRgb(
+        mode.value === 'light' ? '#f5f5f5' : '#a3a3a3',
+      );
+    }
+  },
+  { immediate: true },
+);
 </script>
 <template>
   <div class="hero place-c-c">
     <div>
-      <div class="bg-effect" ref="heroRef"></div>
+      <LazyGradientEffect :primary-color :secondary-color :accent-color />
       <h1>
         <LogoLarge />
       </h1>
@@ -53,14 +76,6 @@ onMounted(() => {
   p {
     font-size: 11px;
     max-width: 280px;
-  }
-  .bg-effect {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
   }
 }
 </style>

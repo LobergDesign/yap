@@ -1,15 +1,4 @@
-<script lang="ts" setup>
-const weatherStatus = ref('pending');
-const setNowTime = ref(Date.now());
-
-onMounted(() => {
-  const interval = setInterval(() => {
-    setNowTime.value = Date.now();
-  }, 60000); // Update every minute
-
-  onUnmounted(() => clearInterval(interval));
-});
-</script>
+<script lang="ts" setup></script>
 <template>
   <header class="header grid-w">
     <ul class="grid-r">
@@ -30,17 +19,7 @@ onMounted(() => {
         <NuxtLink to="/" class="header__nav-item">Contact</NuxtLink>
       </li>
       <li class="grid-c-4 place-c-r">
-        <div class="header__location-info">
-          <span>Copenhagen </span>
-          <NuxtTime
-            :datetime="setNowTime"
-            locale="da-DK"
-            time-zone="Europe/Copenhagen"
-            hour="2-digit"
-            minute="2-digit"
-          />
-          <DynamicWeather v-model:status="weatherStatus" />
-        </div>
+        <CityInfo />
       </li>
     </ul>
   </header>
@@ -49,21 +28,5 @@ onMounted(() => {
 <style lang="scss" scoped>
 .header {
   padding: clamp(5px, 0.8vw, 10px) 0;
-
-  &__location-info {
-    display: flex;
-    align-items: center;
-    span,
-    time {
-      display: inline-block;
-      vertical-align: middle;
-      color: #5d5d5d;
-      font-variation-settings: 'wght' 300;
-    }
-    time {
-      margin: 0 6px;
-      font-size: 11px;
-    }
-  }
 }
 </style>

@@ -1,5 +1,4 @@
-// Default Theme (Your Current Theme)
-
+// Default Theme
 :root[data-mode='default'][data-mode='dark'] {
   --primary: $brand-light;
   --secondary: $brand-dark;
@@ -12,7 +11,7 @@
   --accent: $brand-accent;
 }
 
-// theme-1 Blue Theme
+// theme-1
 :root[data-theme='theme-1'] {
   --primary: #e4f1de;
   --secondary: #141412;
@@ -25,7 +24,7 @@
   --accent: #5b724f;
 }
 
-// theme-2 Green Theme
+// theme-2
 :root[data-theme='theme-2'] {
   --primary: #d1fae5;
   --secondary: #064e3b;
@@ -38,7 +37,7 @@
   --accent: #34d399;
 }
 
-// theme-3 Warm Theme
+// theme-3
 :root[data-theme='theme-3'] {
   --primary: #fff7ed;
   --secondary: #7c2d12;
@@ -51,7 +50,7 @@
   --accent: #fb923c;
 }
 
-// theme-4chrome Theme
+// theme-4
 :root[data-theme='theme-4'] {
   --primary: #f5f5f5;
   --secondary: #0a0a0a;
@@ -64,11 +63,9 @@
   --accent: #a3a3a3;
 }
 
-// Font Families
 :root[data-font='zt-nature'] {
   --main-font: 'ZT Nature Variable', sans-serif;
 }
-
 :root[data-font='nunito'] {
   --main-font: 'Nunito Sans', sans-serif;
 }
