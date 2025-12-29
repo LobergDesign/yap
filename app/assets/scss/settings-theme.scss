@@ -1,0 +1,74 @@
+// Default Theme (Your Current Theme)
+
+:root[data-mode='default'][data-mode='dark'] {
+  --primary: $brand-light;
+  --secondary: $brand-dark;
+  --accent: $brand-accent;
+}
+
+:root[data-theme='default'][data-mode='light'] {
+  --primary: $brand-dark;
+  --secondary: $brand-light;
+  --accent: $brand-accent;
+}
+
+// Ocean Blue Theme
+:root[data-theme='ocean'] {
+  --primary: #e4f1de;
+  --secondary: #141412;
+  --accent: #5b724f;
+}
+
+:root[data-theme='ocean'][data-mode='dark'] {
+  --primary: #141412;
+  --secondary: #e4f1de;
+  --accent: #5b724f;
+}
+
+// Forest Green Theme
+:root[data-theme='forest'] {
+  --primary: #d1fae5;
+  --secondary: #064e3b;
+  --accent: #10b981;
+}
+
+:root[data-theme='forest'][data-mode='dark'] {
+  --primary: #064e3b;
+  --secondary: #d1fae5;
+  --accent: #34d399;
+}
+
+// Sunset Warm Theme
+:root[data-theme='sunset'] {
+  --primary: #fff7ed;
+  --secondary: #7c2d12;
+  --accent: #f97316;
+}
+
+:root[data-theme='sunset'][data-mode='dark'] {
+  --primary: #7c2d12;
+  --secondary: #fff7ed;
+  --accent: #fb923c;
+}
+
+// Monochrome Theme
+:root[data-theme='mono'] {
+  --primary: #f5f5f5;
+  --secondary: #0a0a0a;
+  --accent: #737373;
+}
+
+:root[data-theme='mono'][data-mode='dark'] {
+  --primary: #0a0a0a;
+  --secondary: #f5f5f5;
+  --accent: #a3a3a3;
+}
+
+// Font Families
+:root[data-font='zt-nature'] {
+  --main-font: 'ZT Nature Variable', sans-serif;
+}
+
+:root[data-font='nunito'] {
+  --main-font: 'Nunito Sans', sans-serif;
+}

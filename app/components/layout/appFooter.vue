@@ -3,7 +3,7 @@
   <footer class="footer grid-w">
     <div class="grid-r">
       <div class="grid-c-5 place-c-l">
-        <span class="footer__logo">(yap<sub>©</sub>)</span>
+        <LogoLarge />
       </div>
       <div class="grid-c-1 place-c-r">
         <a href="mailto:jeanloberg@gmail.com">jeanloberg@gmail.com</a>
@@ -24,12 +24,5 @@
 </template>
 <style lang="scss" scoped>
 .footer {
-  &__logo {
-    font-weight: 800;
-    font-size: clamp(80px, 8vw, 120px);
-  }
-  &__logo sub {
-    font-size: clamp(12px, 1vw, 18px);
-  }
 }
 </style>

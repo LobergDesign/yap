@@ -41,3 +41,6 @@ app/types/generated/
 
 # nuxt font
 .data
+
+# ai overview
+AI.md

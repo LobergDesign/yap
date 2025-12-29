@@ -52,7 +52,7 @@ onMounted(() => {
     display: inline-block;
     vertical-align: middle;
     color: #5d5d5d;
-    font-weight: 400;
+    font-variation-settings: 'wght' 300;
   }
   time {
     margin: 0 6px;

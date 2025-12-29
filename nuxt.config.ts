@@ -33,14 +33,14 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/eslint',
-    '@nuxtjs/google-fonts',
     'nuxt-icons',
     '@nuxt/image',
+    '@nuxt/fonts',
     'nuxt-security',
     '@nuxt/hints',
     'nuxt-weather-module',
   ],
-  css: ['~/assets/scss/main.scss'],
+  css: ['~/assets/scss/main.scss', '~/assets/scss/settings-theme.scss'],
   image: {
     providers: {
       hygraph: {
@@ -68,12 +68,25 @@ export default defineNuxtConfig({
       },
     },
   },
-  googleFonts: {
-    families: {
-      'Nunito Sans': {
-        wght: '200..900',
+  fonts: {
+    families: [
+      {
+        name: 'Nunito Sans',
+        provider: 'google',
+        weights: ['200 900'],
       },
-    },
+      {
+        name: 'ZT Nature Variable',
+        src: '/ZT Nature Variable-VF.ttf',
+        weights: ['200 900'],
+      },
+      {
+        name: 'ZT Nature Variable Italic',
+        src: '/ZT Nature Variable Italic-VF.ttf',
+        weights: ['200 900'],
+        styles: ['italic'],
+      },
+    ],
   },
 
   // security
@@ -85,7 +98,8 @@ export default defineNuxtConfig({
           'data:',
           'https://media.graphassets.com', // hygraph images
         ],
-        'style-src': ["'self'", "'unsafe-inline'"],
+        'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+        'font-src': ["'self'", 'https://fonts.gstatic.com'],
         'connect-src': ["'self'", 'https://api.open-meteo.com'],
         'script-src': ["'self'", "'unsafe-inline'"],
       },

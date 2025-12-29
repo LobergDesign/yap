@@ -1,17 +1,18 @@
 $brand-dark: #121212;
 $brand-light: #eaeaea;
-$brand-accent-dark: #c9d6e2;
+// $brand-accent: #c9d6e2;
+$brand-accent: #f0a486;
 
 $light-theme-colors: (
   'primary': $brand-light,
   'secondary': $brand-dark,
-  'accent': $brand-accent-dark,
+  'accent': $brand-accent,
 );
 
 $dark-theme-colors: (
   'primary': $brand-dark,
   'secondary': $brand-light,
-  'accent': $brand-accent-dark,
+  'accent': $brand-accent,
 );
 
 @function theme-color($key) {
@@ -20,6 +21,7 @@ $dark-theme-colors: (
 $default-theme: $dark-theme-colors;
 
 :root {
+  --main-font: 'ZT Nature Variable', sans-serif;
   @each $name, $color in $default-theme {
     --#{$name}: #{$color};
   }
@@ -29,3 +31,19 @@ $default-theme: $dark-theme-colors;
 $transition--cubic: cubic-bezier(0.4, 0, 0.1, 1);
 $transition: 0.4s $transition--cubic;
 $transition--fast: 0.3s $transition--cubic;
+
+// viewport variables
+$viewport-medium: 768px;
+$viewport-large: 1280px;
+
+// mixins for viewports
+@mixin viewport-medium {
+  @media ($viewport-medium <= width) {
+    @content;
+  }
+}
+@mixin viewport-large {
+  @media ($viewport-large <= width) {
+    @content;
+  }
+}

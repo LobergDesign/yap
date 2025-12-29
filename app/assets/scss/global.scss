@@ -4,7 +4,7 @@
   --grid-w-min-width: 15vw;
 }
 body {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: var(--main-font);
   font-style: normal;
   background-color: theme-color('primary');
   color: theme-color('secondary');

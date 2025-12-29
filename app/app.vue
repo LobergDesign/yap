@@ -4,6 +4,9 @@ import AppFooter from './components/layout/appFooter.vue'
     <NuxtLayout>
       <LayoutAppHeader />
       <NuxtPage />
+
+      <SettingsWidget />
+
       <LayoutAppFooter />
     </NuxtLayout>
   </div>
