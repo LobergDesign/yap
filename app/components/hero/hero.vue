@@ -6,7 +6,7 @@ const { hero } = defineProps<{
 
 const primaryColor = ref(hexToRgb('#141412'));
 const secondaryColor = ref(hexToRgb('#5B724F'));
-const accentColor = ref(hexToRgb('#E4F1DE'));
+const accentColor = ref(hexToRgb('#eaeaea'));
 
 const { theme, mode } = useSettings();
 
@@ -28,9 +28,7 @@ watch(
       secondaryColor.value = hexToRgb(
         mode.value === 'dark' ? '#10b981' : '#064e3b',
       );
-      accentColor.value = hexToRgb(
-        mode.value === 'light' ? '#d1fae5' : '#34d399',
-      );
+      accentColor.value = hexToRgb('#d1fae5');
     } else if (theme.value === 'theme-3') {
       primaryColor.value = hexToRgb(
         mode.value === 'light' ? '#f97316' : '#7c2d12',
@@ -38,9 +36,7 @@ watch(
       secondaryColor.value = hexToRgb(
         mode.value === 'dark' ? '#f97316' : '#7c2d12',
       );
-      accentColor.value = hexToRgb(
-        mode.value === 'light' ? '#fff7ed' : '#fb923c',
-      );
+      accentColor.value = hexToRgb('#fff7ed');
     } else if (theme.value === 'theme-4') {
       primaryColor.value = hexToRgb(
         mode.value === 'light' ? '#737373' : '#0a0a0a',
@@ -48,9 +44,15 @@ watch(
       secondaryColor.value = hexToRgb(
         mode.value === 'dark' ? '#737373' : '#0a0a0a',
       );
-      accentColor.value = hexToRgb(
-        mode.value === 'light' ? '#f5f5f5' : '#a3a3a3',
+      accentColor.value = hexToRgb('#f5f5f5');
+    } else if (theme.value === 'default') {
+      primaryColor.value = hexToRgb(
+        mode.value === 'light' ? '#5b724f' : '#121212',
       );
+      secondaryColor.value = hexToRgb(
+        mode.value === 'dark' ? '#5b724f' : '#121212',
+      );
+      accentColor.value = hexToRgb('#eaeaea');
     }
   },
   { immediate: true },

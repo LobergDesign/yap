@@ -5,5 +5,8 @@ query GetFrontpage($id: ID) {
     heroSection {
       ...HeroFields
     }
+    project {
+      slug
+    }
   }
 }

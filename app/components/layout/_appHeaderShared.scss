@@ -8,7 +8,7 @@
     color: theme-color('secondary');
   }
   &__nav-item {
-    font-variation-settings: 'wght' 300;
+    font-variation-settings: 'wght' 400;
     transition: font-variation-settings $transition--fast;
     sub {
       color: theme-color('accent');

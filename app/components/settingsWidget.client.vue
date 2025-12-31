@@ -62,7 +62,7 @@ watch([font, theme, mode], () => applySettings());
 .trigger {
   position: fixed;
   bottom: 24px;
-  right: 24px;
+  left: 24px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -87,7 +87,7 @@ watch([font, theme, mode], () => applySettings());
 .panel {
   position: fixed;
   bottom: 5rem;
-  right: 2rem;
+  left: 2rem;
   width: 20rem;
   padding: 1.2rem;
   background: rgba(var(--primary), 0.85);
@@ -101,10 +101,6 @@ watch([font, theme, mode], () => applySettings());
 }
 
 .close {
-  background: none;
-  border: none;
-
-  cursor: pointer;
   color: theme-color('secondary');
 
   &:hover {

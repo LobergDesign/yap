@@ -8,15 +8,15 @@
         </NuxtLink>
       </li>
       <li class="grid-c-1 place-c-l">
-        <NuxtLink to="/" class="header__nav-item"
-          >Playground<sub>(5)</sub></NuxtLink
+        <NuxtLink to="/projects" class="header__nav-item"
+          >Projects<sub>(5)</sub></NuxtLink
         >
       </li>
       <li class="grid-c-1 place-c-l">
-        <NuxtLink to="/" class="header__nav-item">About me</NuxtLink>
+        <NuxtLink to="/about-me" class="header__nav-item">About me</NuxtLink>
       </li>
       <li class="grid-c-1 place-c-l">
-        <NuxtLink to="/" class="header__nav-item">Contact</NuxtLink>
+        <NuxtLink to="/contact" class="header__nav-item">Contact</NuxtLink>
       </li>
       <li class="grid-c-4 place-c-r">
         <CityInfo />

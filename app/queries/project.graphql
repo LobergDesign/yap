@@ -1,0 +1,19 @@
+query GetProject($slug: String!) {
+  project(where: { slug: $slug }) {
+    id
+    title
+    slug
+    intro {
+      html
+      text
+    }
+    createdDate
+    websiteUrl
+    npmUrl
+    githubUrl
+    codepenUrl
+    projectCaseType
+    createdAt
+    updatedAt
+  }
+}

@@ -35,3 +35,11 @@ sub {
 .dynamic-weather-icon {
   vertical-align: middle;
 }
+
+// reset
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: currentColor;
+}
