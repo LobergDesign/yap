@@ -8,7 +8,7 @@ const { data } = await useFrontpage();
       v-if="data?.frontpage?.heroSection"
       :hero="data?.frontpage?.heroSection"
     />
-    <LazyWidget
+    <LazyWidgetProject
       v-if="data?.frontpage?.project?.slug"
       :slug="data?.frontpage?.project?.slug"
     />

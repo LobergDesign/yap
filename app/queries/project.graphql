@@ -2,6 +2,7 @@ query GetProject($slug: String!) {
   project(where: { slug: $slug }) {
     id
     title
+    subHeader
     slug
     intro {
       html
