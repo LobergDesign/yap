@@ -2,7 +2,6 @@
 import { useStorage } from '@vueuse/core';
 import { gsap } from 'gsap';
 
-// show case images on hover
 const { slug } = defineProps<{
   slug: string;
 }>();
@@ -11,7 +10,7 @@ const isActive = ref(false);
 const widgetRef = useTemplateRef('widgetRef');
 const tl = shallowRef<gsap.core.Timeline>();
 const { data, pending } = await useProject(slug);
-
+const widgetState = useStorage('widget-1-dismissed', false);
 // Initialize animation on mount
 onMounted(async () => {
   await nextTick();
@@ -24,7 +23,7 @@ onMounted(async () => {
     y: 60,
     opacity: 0,
   });
-
+  if (widgetState.value) return;
   tl.value.to(widgetRef.value, {
     y: 1,
     opacity: 1,
@@ -41,6 +40,7 @@ onMounted(async () => {
 const handleClose = () => {
   tl.value?.reverse().then(() => {
     isActive.value = false;
+    widgetState.value = true;
   });
 };
 

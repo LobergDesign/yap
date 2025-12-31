@@ -13,3 +13,18 @@ p {
 a {
   color: currentColor;
 }
+
+// exept markdown
+ul:not(.markdown) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a:not(.markdown) {
+  text-decoration: none;
+}
+
+// sub
+sub {
+  vertical-align: top;
+}
