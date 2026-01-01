@@ -8,5 +8,9 @@ query GetFrontpage($id: ID) {
     project {
       slug
     }
+    introTitle
+    introText {
+      html
+    }
   }
 }

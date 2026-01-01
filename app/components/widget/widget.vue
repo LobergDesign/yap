@@ -1,7 +1,11 @@
 <script lang="ts" setup>
-const { pending, title } = defineProps<{
+const { pending, title = '' } = defineProps<{
   pending: boolean;
-  title: string;
+  title?: string;
+}>();
+
+const emit = defineEmits<{
+  close: [];
 }>();
 </script>
 
@@ -11,12 +15,12 @@ const { pending, title } = defineProps<{
     <template v-else>
       <div class="widget__header justify-between">
         <h4 v-if="title">{{ title }}</h4>
-        <button @click="handleClose">
+        <button @click="emit('close')">
           <nuxt-icon name="close" />
         </button>
       </div>
       <div class="widget__body">
-        <slot></slot>
+        <slot />
       </div>
     </template>
   </div>

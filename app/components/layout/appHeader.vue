@@ -18,9 +18,6 @@
       <li class="grid-c-1 place-c-l">
         <NuxtLink to="/contact" class="header__nav-item">Contact</NuxtLink>
       </li>
-      <li class="grid-c-4 place-c-r">
-        <CityInfo />
-      </li>
     </ul>
   </header>
 </template>

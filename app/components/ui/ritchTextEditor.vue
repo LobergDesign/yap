@@ -3,7 +3,7 @@ import DOMPurify from 'dompurify';
 
 interface Text {
   html: string;
-  text: string;
+  text?: string;
 }
 
 defineProps<{

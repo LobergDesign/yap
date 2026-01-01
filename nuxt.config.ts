@@ -9,9 +9,6 @@ export default defineNuxtConfig({
     graphqlToken: process.env.GQL_TOKEN,
     revalidateSecret: process.env.REVALIDATE_SECRET,
   },
-  weatherModule: {
-    iconSize: 'clamp(25px, 2vw, 30px)',
-  },
   // Deployment preset (change to 'netlify' if using Netlify)
   nitro: {
     preset: 'vercel',
@@ -98,7 +95,11 @@ export default defineNuxtConfig({
           'data:',
           'https://media.graphassets.com', // hygraph images
         ],
-        'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+        'style-src': [
+          "'self'",
+          "'unsafe-inline'",
+          'https://fonts.googleapis.com',
+        ],
         'font-src': ["'self'", 'https://fonts.gstatic.com'],
         'connect-src': ["'self'", 'https://api.open-meteo.com'],
         'script-src': ["'self'", "'unsafe-inline'"],
