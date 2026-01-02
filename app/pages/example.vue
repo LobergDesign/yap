@@ -2,6 +2,32 @@
 import { gsap } from 'gsap';
 
 const target = '.box';
+const tween = shallowRef<gsap.core.Tween | null>(null);
+const gap = 10;
+
+const layout = () => {
+  const boxes = gsap.utils.toArray<HTMLElement>(target);
+
+  tween.value?.kill(); // kill any old layout tween
+
+  tween.value = gsap.to(boxes, {
+    duration: 0.6,
+    y: (i, _el, targets) => {
+      // stack each element above the previous ones
+      let y = 0;
+      for (let j = 0; j < i; j++) {
+        const prev = targets[j] as HTMLElement;
+        y -= prev.clientHeight + gap;
+      }
+      return y;
+    },
+    opacity: 1,
+    autoAlpha: 1,
+    delay: 0.1,
+    stagger: 0.1,
+    ease: 'elastic.out(1, 0.8)',
+  });
+};
 
 onMounted(async () => {
   await nextTick();
@@ -10,32 +36,22 @@ onMounted(async () => {
     y: 60,
     opacity: 0,
   });
-
-  gsap.to(target, {
-    duration: 1,
-    y: (i, target, targets) => {
-      const prevTarget = targets[i + -1];
-
-      if (!prevTarget) {
-        return 0;
-      } else {
-        console.log('prevTarget', prevTarget.clientHeight);
-        return -prevTarget.clientHeight;
-      }
-    },
-    opacity: 1,
-    delay: 0.5,
-    stagger: 0.3,
-    ease: 'elastic.out(1,0.8)',
-  });
+  layout();
 });
 
-const remove = (e: Event) => {
-  gsap.to(e.target, {
-    duration: 1,
-    y: 60,
+const remove = (e: MouseEvent) => {
+  const el = e.currentTarget as HTMLElement;
+
+  gsap.to(el, {
+    duration: 0.4,
+    y: '+=60', // drop it down or wherever you like
     opacity: 0,
-    ease: 'elastic.out(1,0.8)',
+    autoAlpha: 0,
+    ease: 'power3.in',
+    onComplete: () => {
+      el.parentElement?.removeChild(el);
+      layout();
+    },
   });
 };
 </script>
@@ -52,8 +68,10 @@ const remove = (e: Event) => {
               purple purple purple purple purple
             </div>
             <div class="box place-c-c" @click="remove">
-              orange orange orange orange orange orange orange orange orange
-              orange orange orange
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Praesentium soluta tempore maxime, vero veritatis facilis
+              molestias distinctio omnis maiores tempora quaerat ratione sed,
+              deleniti natus voluptates aut rem iste. Temporibus?
             </div>
           </div>
         </div>
