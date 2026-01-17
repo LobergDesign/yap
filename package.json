@@ -12,30 +12,29 @@
   },
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.2.0",
-    "@lobergdesign/dot-grid": "^1.0.6",
+    "@lobergdesign/dot-grid": "^1.0.9",
     "@nuxt/fonts": "^0.12.1",
     "@nuxt/image": "^2.0.0",
     "@vueuse/core": "^14.1.0",
     "graphql": "^16.12.0",
     "gsap": "^3.14.2",
-    "isomorphic-dompurify": "^2.34.0",
+    "isomorphic-dompurify": "^2.35.0",
     "nuxt": "^4.2.2",
     "nuxt-icons": "^4.0.0",
-    "nuxt-security": "2.5.0",
-    "nuxt-weather-module": "^1.0.4",
-    "sass": "^1.97.0",
+    "nuxt-security": "2.5.1",
+    "nuxt-weather-module": "^1.0.6",
+    "sass": "^1.97.2",
     "vue": "^3.5.26",
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^6.1.0",
+    "@graphql-codegen/cli": "^6.1.1",
     "@graphql-codegen/typed-document-node": "^6.1.5",
     "@graphql-codegen/typescript": "^5.0.7",
     "@graphql-codegen/typescript-operations": "^5.0.7",
     "eslint": "^9.39.2",
     "dotenv": "^17.2.3",
     "@nuxt/eslint": "^1.12.1",
-    "prettier": "^3.7.4",
-    "@nuxt/hints": "1.0.0-alpha.4"
+    "prettier": "^3.8.0"
   }
 }

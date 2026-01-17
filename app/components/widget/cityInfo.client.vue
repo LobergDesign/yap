@@ -1,13 +1,17 @@
 <script lang="ts" setup>
 const weatherStatus = ref('pending');
 const setNowTime = ref(Date.now());
+const interval = ref<NodeJS.Timeout | null>(null);
 
-onMounted(() => {
-  const interval = setInterval(() => {
+onMounted(async () => {
+  await nextTick();
+  interval.value = setInterval(() => {
     setNowTime.value = Date.now();
   }, 60000); // Update every minute
+});
 
-  onUnmounted(() => clearInterval(interval));
+onUnmounted(() => {
+  if (interval.value) clearInterval(interval.value);
 });
 </script>
 
@@ -21,7 +25,7 @@ onMounted(() => {
         hour="2-digit"
         minute="2-digit"
       />
-      <DynamicWeather v-model:status="weatherStatus" class="text-c" />
+      <LazyDynamicWeather v-model:status="weatherStatus" class="text-c" />
     </div>
   </Widget>
 </template>

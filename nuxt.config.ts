@@ -34,7 +34,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/fonts',
     'nuxt-security',
-    '@nuxt/hints',
     'nuxt-weather-module',
   ],
   css: ['~/assets/scss/main.scss', '~/assets/scss/settings-theme.scss'],

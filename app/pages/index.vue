@@ -31,7 +31,11 @@ const { data } = await useFrontpage();
         </div>
       </div>
     </div>
-
-    <LazyWidgetHandler :project-slug="data?.frontpage?.project?.slug" />
+    <ClientOnly>
+      <LazyWidgetHandler
+        v-if="data.frontpage.project?.slug"
+        :project-slug="data.frontpage.project?.slug"
+      />
+    </ClientOnly>
   </main>
 </template>

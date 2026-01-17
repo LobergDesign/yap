@@ -7,7 +7,7 @@ const { data, pending } = await useProject(slug);
 </script>
 
 <template>
-  <LazyWidget :pending :title="data?.project?.title">
+  <Widget :pending :title="data?.project?.title">
     <NuxtLink
       v-if="data?.project"
       class="widget__body"
@@ -19,7 +19,7 @@ const { data, pending } = await useProject(slug);
       />
       <p v-if="data.project.subHeader">{{ data.project.subHeader }}</p>
     </NuxtLink>
-  </LazyWidget>
+  </Widget>
 </template>
 
 <style lang="scss" scoped>
