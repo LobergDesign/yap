@@ -10,17 +10,15 @@ const gap = 10;
 
 const layout = () => {
   const boxes = gsap.utils.toArray<HTMLElement>(target);
-  console.log('target layout', boxes);
   tween.value?.kill();
-
+  if (!boxes.length) return;
   tween.value = gsap.to(boxes, {
     duration: 0.6,
     y: (i, _el, targets) => {
       // stack each element above the previous ones
       let y = 0;
-      for (let j = 0; j < i; j++) {
-        const prev = targets[j] as HTMLElement;
-        y -= prev.clientHeight + gap;
+      for (const el of targets.slice(0, i)) {
+        y -= el.clientHeight + gap;
       }
       return y;
     },
@@ -33,9 +31,6 @@ const layout = () => {
 };
 
 onMounted(async () => {
-  await nextTick();
-  console.log('target onmoauned', target);
-
   requestAnimationFrame(() => {
     gsap.set(target, {
       y: 60,
@@ -45,8 +40,6 @@ onMounted(async () => {
   });
 });
 
-// Cleanup on unmount
-// onUnmounted(() => tween.value?.kill());
 const remove = (e: MouseEvent) => {
   const el = e.currentTarget as HTMLElement;
 
@@ -62,6 +55,8 @@ const remove = (e: MouseEvent) => {
     },
   });
 };
+// Cleanup on unmount
+onUnmounted(() => tween.value?.kill());
 </script>
 
 <template>
@@ -70,9 +65,9 @@ const remove = (e: MouseEvent) => {
       v-if="projectSlug"
       class="widget-box"
       :slug="projectSlug"
-      @close="remove"
+      @click="remove"
     />
-    <WidgetCityInfo class="widget-box" @close="remove" />
+    <WidgetCityInfo class="widget-box" @click="remove" />
   </div>
 </template>
 
