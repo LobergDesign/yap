@@ -1,13 +1,9 @@
 <script setup lang="ts">
+import type { RichText } from '~/types/shared/rte';
 import DOMPurify from 'dompurify';
 
-interface Text {
-  html: string;
-  text?: string;
-}
-
 defineProps<{
-  data: Text;
+  data: RichText;
 }>();
 </script>
 <template>

@@ -1,0 +1,8 @@
+fragment ContentSideBySideFragment on ContentSideBySide {
+  sectionOne {
+    html
+  }
+  sectionTwo {
+    html
+  }
+}

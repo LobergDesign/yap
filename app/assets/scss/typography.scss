@@ -1,6 +1,7 @@
 h2 {
   font-size: clamp(20px, 3vw, 40px);
   font-variation-settings: 'wght' 400;
+  margin: clamp(5px, 3vw, 20px) 0 clamp(10px, 5vw, 30px);
 }
 h3 {
   margin: 0.5rem 0;
