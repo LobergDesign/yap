@@ -12,3 +12,10 @@
   margin-top: clamp(20px, 8vw, 80px);
   margin-bottom: clamp(20px, 8vw, 80px);
 }
+.flex {
+  display: flex;
+}
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}

@@ -9,8 +9,8 @@ body {
   background-color: theme-color('primary');
   color: theme-color('secondary');
   transition:
-    background-color 0.3s,
-    color 0.3s;
+    background-color $transition,
+    color $transition;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -20,10 +20,52 @@ body {
   vertical-align: middle;
 }
 
-// reset
+// button and links
 button {
+  font-family: var(--main-font);
+  font-style: normal;
   background: none;
   border: none;
   cursor: pointer;
   color: currentColor;
+}
+
+.cta {
+  position: relative;
+  display: flex;
+  width: fit-content;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 4px 0;
+  font-size: 13px;
+  font-variation-settings: 'wght' 600;
+  overflow: hidden;
+  svg {
+    transform: rotate(-90deg);
+  }
+
+  &:hover {
+    .inner-line {
+      transform: translateX(0);
+    }
+    .line {
+      transform: translateX(100%);
+    }
+  }
+}
+.line,
+.inner-line {
+  position: absolute;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: currentColor;
+  opacity: 0.3;
+  transition: transform $transition--fast;
+}
+.inner-line {
+  transform: translateX(-100%);
+  opacity: 1;
+  background-color: theme-color('accent');
 }

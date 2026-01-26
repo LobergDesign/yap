@@ -3,6 +3,8 @@ $brand-light: #eaeaea;
 // $brand-accent: #c9d6e2;
 $brand-accent: #5b724f;
 
+$border-radius: clamp(8px, 2vw, 20px);
+
 $light-theme-colors: (
   'primary': $brand-light,
   'secondary': $brand-dark,

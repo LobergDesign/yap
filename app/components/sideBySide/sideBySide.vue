@@ -12,11 +12,15 @@ defineProps<{
 </script>
 <template>
   <div class="grid-r">
-    <div class="grid-c-8 grid-c-sm-4 grid-c-md-2">
-      <UiRitchTextEditor v-if="data.sectionOne" :data="data.sectionOne" />
-    </div>
-    <div class="grid-c-8 grid-c-sm-4 grid-c-md-2">
-      <UiRitchTextEditor v-if="data.sectionTwo" :data="data.sectionTwo" />
-    </div>
+    <UiRitchTextEditor
+      v-if="data.sectionOne"
+      :data="data.sectionOne"
+      class="grid-c-8 grid-c-sm-4 grid-c-md-2"
+    />
+    <UiRitchTextEditor
+      v-if="data.sectionTwo"
+      :data="data.sectionTwo"
+      class="grid-c-8 grid-c-sm-4 grid-c-md-2"
+    />
   </div>
 </template>

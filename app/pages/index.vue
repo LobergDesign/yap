@@ -1,5 +1,36 @@
 <script lang="ts" setup>
 const { data } = await useFrontpage();
+
+const cards = [
+  {
+    type: 'codepen',
+    title: 'Design and analyze',
+    description:
+      'Lorem ipsum dolor sit amet. Vel maiores voluptates et vero consequatur.',
+    linkHref: '/about-me',
+  },
+  {
+    type: 'settings',
+    title: 'Development',
+    description:
+      'Lorem ipsum dolor sit amet. Vel maiores voluptates et vero consequatur.',
+    linkHref: '/about-me',
+  },
+  {
+    type: 'sun',
+    title: 'quality assurance',
+    description:
+      'Lorem ipsum dolor sit amet. Vel maiores voluptates et vero consequatur.',
+    linkHref: '/about-me',
+  },
+  {
+    type: 'codepen',
+    title: 'Launch it',
+    description:
+      'Lorem ipsum dolor sit amet. Vel maiores voluptates et vero consequatur.',
+    linkHref: '/about-me',
+  },
+];
 </script>
 
 <template>
@@ -20,7 +51,21 @@ const { data } = await useFrontpage();
         v-if="data.frontpage.introContent"
         :data="data.frontpage.introContent"
       />
-      <NuxtLink to="about-me">More about me</NuxtLink>
+      <UiLink text="More about me" href="/about-me" />
+      <div class="grid-r spacing-tb">
+        <div
+          v-for="(card, index) in cards"
+          :key="index"
+          class="grid-c-12 grid-c-sm-4 grid-c-md-2"
+        >
+          <Card
+            :type="card.type"
+            :title="card.title"
+            :description="card.description"
+            :link-href="card.linkHref"
+          />
+        </div>
+      </div>
     </div>
     <ClientOnly>
       <LazyWidgetHandler
