@@ -26,15 +26,15 @@
 
 // theme-2
 :root[data-theme='theme-2'] {
-  --primary: #d1fae5;
+  --primary: #c9d6e2;
   --secondary: #064e3b;
-  --accent: #10b981;
+  --accent: #064e3b;
 }
 
 :root[data-theme='theme-2'][data-mode='dark'] {
   --primary: #064e3b;
-  --secondary: #d1fae5;
-  --accent: #34d399;
+  --secondary: #c9d6e2;
+  --accent: #c9d6e2;
 }
 
 // theme-3

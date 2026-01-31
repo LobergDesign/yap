@@ -28,27 +28,27 @@ export default defineEventHandler(async (event) => {
     // Handle GraphQL errors with proper status codes
     if (response.errors && response.errors.length > 0) {
       const firstError = response.errors[0];
-      const errorCode = firstError.extensions?.code;
+      const errorCode = firstError?.extensions?.code;
 
       // Map GraphQL error codes to HTTP status codes
-      let statusCode = 500;
-      if (errorCode === 'UNAUTHENTICATED') statusCode = 401;
-      if (errorCode === 'FORBIDDEN') statusCode = 403;
-      if (errorCode === 'BAD_USER_INPUT') statusCode = 400;
-      if (errorCode === 'GRAPHQL_VALIDATION_FAILED') statusCode = 400;
-      if (errorCode === 'GRAPHQL_PARSE_FAILED') statusCode = 400;
-      if (errorCode === 'NOT_FOUND') statusCode = 404;
+      let status = 500;
+      if (errorCode === 'UNAUTHENTICATED') status = 401;
+      if (errorCode === 'FORBIDDEN') status = 403;
+      if (errorCode === 'BAD_USER_INPUT') status = 400;
+      if (errorCode === 'GRAPHQL_VALIDATION_FAILED') status = 400;
+      if (errorCode === 'GRAPHQL_PARSE_FAILED') status = 400;
+      if (errorCode === 'NOT_FOUND') status = 404;
 
       console.error('[GraphQL Error]', {
         code: errorCode,
-        message: firstError.message,
-        path: firstError.path,
-        statusCode,
+        message: firstError?.message,
+        path: firstError?.path,
+        status,
       });
 
       throw createError({
-        statusCode,
-        statusMessage: firstError.message,
+        status,
+        statusText: firstError?.message,
         data: {
           graphQLErrors: response.errors,
           // Include partial data if it exists (GraphQL can return both)
@@ -59,9 +59,8 @@ export default defineEventHandler(async (event) => {
 
     return response.data;
   } catch (error: unknown) {
-    // Re-throw if already a Nuxt error (has statusCode)
-    if (error && typeof error === 'object' && 'statusCode' in error)
-      throw error;
+    // Re-throw if already a Nuxt error (has status)
+    if (error && typeof error === 'object' && 'status' in error) throw error;
 
     // Type assertion for error with Node.js error code property
     const err = error as Error & { code?: string };
@@ -74,8 +73,8 @@ export default defineEventHandler(async (event) => {
       });
 
       throw createError({
-        statusCode: 503,
-        statusMessage: 'GraphQL service unavailable',
+        status: 503,
+        statusText: 'GraphQL service unavailable',
         data: {
           originalError: err.message,
           type: 'NETWORK_ERROR',
@@ -88,8 +87,8 @@ export default defineEventHandler(async (event) => {
       console.error('[Timeout Error]', err.message);
 
       throw createError({
-        statusCode: 504,
-        statusMessage: 'GraphQL request timeout',
+        status: 504,
+        statusText: 'GraphQL request timeout',
         data: {
           type: 'TIMEOUT_ERROR',
         },
@@ -100,8 +99,8 @@ export default defineEventHandler(async (event) => {
     console.error('[Unknown Error]', err);
 
     throw createError({
-      statusCode: 500,
-      statusMessage: 'Internal server error',
+      status: 500,
+      statusText: 'Internal server error',
       data: {
         type: 'UNKNOWN_ERROR',
       },

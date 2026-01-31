@@ -1,7 +1,7 @@
 import type { NuxtError } from '#app';
 
 interface ParsedError {
-  statusCode: number;
+  status: number;
   message: string;
   data: unknown;
 }
@@ -21,17 +21,17 @@ export const useErrorHandler = () => {
     // Log all errors in development
     if (isDev) {
       console.error('[Error Handler]', {
-        statusCode: parsed.statusCode,
+        status: parsed.status,
         message: parsed.message,
         data: parsed.data,
       });
     }
 
     // Show error page for fatal errors
-    if (shouldShowErrorPage(parsed.statusCode)) {
+    if (shouldShowErrorPage(parsed.status)) {
       showError({
-        statusCode: parsed.statusCode,
-        statusMessage: parsed.message,
+        status: parsed.status,
+        statusText: parsed.message,
         data: parsed.data,
         fatal: true,
       });
@@ -48,8 +48,8 @@ export const useErrorHandler = () => {
     // Nuxt error format
     if (isNuxtError(error)) {
       return {
-        statusCode: error.statusCode || 500,
-        message: error.statusMessage || error.message || 'An error occurred',
+        status: error.status || 500,
+        message: error.statusText || error.message || 'An error occurred',
         data: error.data,
       };
     }
@@ -57,7 +57,7 @@ export const useErrorHandler = () => {
     // Generic Error
     if (error instanceof Error) {
       return {
-        statusCode: 500,
+        status: 500,
         message: error.message,
         data: null,
       };
@@ -65,7 +65,7 @@ export const useErrorHandler = () => {
 
     // Unknown error type
     return {
-      statusCode: 500,
+      status: 500,
       message: String(error),
       data: null,
     };
@@ -75,14 +75,14 @@ export const useErrorHandler = () => {
    * Type guard for Nuxt errors
    */
   const isNuxtError = (error: unknown): error is NuxtError =>
-    error !== null && typeof error === 'object' && 'statusCode' in error;
+    error !== null && typeof error === 'object' && 'status' in error;
 
   /**
    * Determine if error should show error.vue page
    * Show for: 404 (not found) and 500+ (server errors)
    */
-  const shouldShowErrorPage = (statusCode: number): boolean =>
-    statusCode === 404 || statusCode >= 500;
+  const shouldShowErrorPage = (status: number): boolean =>
+    status === 404 || status >= 500;
 
   return {
     handleError,

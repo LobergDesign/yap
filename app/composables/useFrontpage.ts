@@ -4,10 +4,6 @@ import {
   type GetFrontpageQueryVariables,
 } from '~/types/generated/graphql';
 
-/**
- * Composable for fetching frontpage data from CMS
- * Handles caching, errors, and SSR
- */
 export const useFrontpage = async () => {
   const { executeQuery } = useGraphQL<
     GetFrontpageQuery,

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app';
 
-const { error = { statusCode: 0, statusMessage: '', data: {} } } = defineProps({
+const { error = { status: 0, statusText: '', data: {} } } = defineProps({
   error: Object as () => NuxtError,
 });
 
@@ -43,11 +43,11 @@ const errorMessages: Record<number, { title: string; message: string }> = {
  * Defaults to generic message if code not mapped
  */
 const displayError = computed(() => {
-  const code = error?.statusCode || 500;
+  const code = error?.status || 500;
   return (
     errorMessages[code] || {
       title: 'An Error Occurred',
-      message: error?.statusMessage || 'Please try again later.',
+      message: error?.statusText || 'Please try again later.',
     }
   );
 });
@@ -57,13 +57,13 @@ const handleClearError = () => clearError({ redirect: '/' });
 
 <template>
   <div v-if="error">
-    <h1>{{ error?.statusCode || 500 }} - {{ displayError.title }}</h1>
+    <h1>{{ error?.status || 500 }} - {{ displayError.title }}</h1>
     <p>{{ displayError.message }}</p>
 
     <div v-if="isDev">
       <details>
         <summary>Technical Details (dev only)</summary>
-        <p><strong>Message:</strong> {{ error?.statusMessage }}</p>
+        <p><strong>Message:</strong> {{ error?.statusText }}</p>
         <pre v-if="error?.data">{{ JSON.stringify(error.data, null, 2) }}</pre>
       </details>
     </div>

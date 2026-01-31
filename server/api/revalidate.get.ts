@@ -5,8 +5,8 @@ export default defineEventHandler(async (event) => {
   // Verify secret from GitHub Action
   if (secret !== process.env.REVALIDATE_SECRET) {
     throw createError({
-      statusCode: 401,
-      statusMessage: 'Invalid revalidation secret',
+      status: 401,
+      statusText: 'Invalid revalidation secret',
     });
   }
 

@@ -4,10 +4,6 @@ import {
   type GetProjectQueryVariables,
 } from '~/types/generated/graphql';
 
-/**
- * Composable for fetching frontpage data from CMS
- * Handles caching, errors, and SSR
- */
 export const useProject = async (slug: string) => {
   const { executeQuery } = useGraphQL<
     GetProjectQuery,
