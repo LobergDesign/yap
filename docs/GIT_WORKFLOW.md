@@ -20,6 +20,28 @@ We use the **Conventional Commits** specification to structure our commit messag
     -   `fix`: A bug fix (triggers a PATCH version bump).
     -   **BREAKING CHANGE** in the footer triggers a MAJOR version bump.
 
+### Default Conventional Commit Types & `semantic-release` Impact
+
+The Conventional Commits specification includes many types, but by default, `semantic-release` only triggers a new version release for specific ones:
+
+*   **Triggers a release:**
+    *   `feat`: A new feature (triggers a **minor** version bump)
+    *   `fix`: A bug fix (triggers a **patch** version bump)
+    *   Any commit containing `BREAKING CHANGE:` in its body/footer (triggers a **major** version bump)
+
+*   **Do NOT trigger a release (but appear in changelog):**
+    *   `build`: Changes that affect the build system or external dependencies
+    *   `chore`: Other changes that don't modify source or test files
+    *   `ci`: Changes to CI configuration files and scripts
+    *   `docs`: Documentation only changes
+    *   `perf`: A code change that improves performance
+    *   `refactor`: A code change that neither fixes a bug nor adds a feature
+    *   `revert`: Reverts a previous commit
+    *   `style`: Changes that do not affect the meaning of the code
+    *   `test`: Adding missing tests or correcting existing tests
+
+This behavior ensures new versions are published primarily for user-facing changes.
+
 ## 3. Summary of the Release Workflow
 
 1.  **Develop:** Features are built in `feature/*` branches and merged into `develop` using Conventional Commits.
