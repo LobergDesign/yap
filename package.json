@@ -22,7 +22,7 @@
     "nuxt": "^4.3.0",
     "nuxt-icons": "^4.0.0",
     "nuxt-security": "2.5.1",
-    "nuxt-weather-module": "^1.0.6",
+    "nuxt-weather-module": "^1.0.8",
     "sass": "^1.97.3",
     "vue": "^3.5.27",
     "vue-router": "^4.6.4"

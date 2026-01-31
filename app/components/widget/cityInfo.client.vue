@@ -37,7 +37,7 @@ onUnmounted(() => {
     opacity: 0.5;
     margin-bottom: 5px;
   }
-  ::v-deep(.dynamic-weather-icon) {
+  ::v-deep(.dynamic-weather-icon) svg {
     height: clamp(8rem, 8vw, 10rem);
     width: clamp(8rem, 8vw, 10rem);
   }
