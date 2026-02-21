@@ -66,6 +66,15 @@ const cards = [
           />
         </div>
       </div>
+      <div class="grid-r spacing-tb">
+        <Spotlight
+          v-if="data.frontpage.spotlight"
+          :title="data.frontpage.spotlight.title"
+          :sub-header="data.frontpage.spotlight.subHeader"
+          :link-href="data.frontpage.spotlight.slug"
+          :image="data.frontpage.spotlight.image"
+        />
+      </div>
     </div>
     <ClientOnly>
       <LazyWidgetHandler
