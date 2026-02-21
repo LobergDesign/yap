@@ -1,18 +1,28 @@
 # Git Workflow & Release Strategy
 
-This document outlines the branching and release strategy for this project.
+This document outlines the branching and release strategy for this project, utilizing `semantic-release` for automated versioning and deployments.
 
-## 1. Release Branch Strategy
+## 1. Branching Strategy
 
-When the `develop` branch is ready for a release, a dedicated branch is created to prepare for production.
+Our branching strategy focuses on maintaining a stable `main` branch for releases while allowing continuous development on `develop`.
 
--   **Branching:** A `release/vX.Y.Z` branch is created from `develop`.
--   **Purpose:** This branch is used exclusively for final testing, version number updates, and critical bug fixes. No new features are added.
--   **Merging:** Once finalized, the release branch is merged into `main` (to deploy to production) and also back into `develop` (to ensure any fixes are included in future development).
+-   **`main` Branch:**
+    -   This branch always reflects the latest production-ready state of the application.
+    -   All releases (version bumps, changelog generation, and tag creation) are triggered automatically by `semantic-release` directly from this branch.
+    -   **Never commit directly to `main`.** Changes are integrated via merge requests from `develop`.
+
+-   **`develop` Branch:**
+    -   This is the primary integration branch for all new features and bug fixes.
+    -   New feature branches (`feature/*`) or bug fix branches (`fix/*`) are branched off `develop` and merged back into `develop`.
+    -   When a set of features or fixes is ready for a release, the `develop` branch is merged into `main`.
+
+-   **Feature/Fix Branches (`feature/*`, `fix/*`):**
+    -   Short-lived branches created from `develop` for implementing specific features or bug fixes.
+    -   They should be merged back into `develop` using a Pull Request, ensuring Conventional Commit messages are used.
 
 ## 2. Commit Message & Automation Strategy
 
-We use the **Conventional Commits** specification to structure our commit messages. This enables automated versioning and changelog generation.
+We use the **Conventional Commits** specification to structure our commit messages. This is crucial for `semantic-release` to automate versioning and changelog generation.
 
 -   **Format:** ` <type>(<scope>): <subject>`
 -   **Key Types:**
@@ -20,14 +30,40 @@ We use the **Conventional Commits** specification to structure our commit messag
     -   `fix`: A bug fix (triggers a PATCH version bump).
     -   **BREAKING CHANGE** in the footer triggers a MAJOR version bump.
 
-## 3. Summary of the Release Workflow
+### Default Conventional Commit Types & `semantic-release` Impact
 
-1.  **Develop:** Features are built in `feature/*` branches and merged into `develop` using Conventional Commits.
-2.  **Prepare Release:** A `release/vX.Y.Z` branch is created from `develop` for final preparations.
-3.  **Finalize & Merge:** The release branch is merged into `main` and `develop`.
-4.  **Automate Release:** On the `main` branch, a script (e.g., `bun run release`) is executed. This script automatically:
-    -   Determines the new version number based on commit history.
-    -   Generates or updates the `CHANGELOG.md` file.
-    -   Commits the version bump and changelog.
-    -   Creates a git tag for the new version.
-5.  **Push:** Finally, the `main` and `develop` branches are pushed to the remote, along with the new tag.
+The Conventional Commits specification includes many types, but by default, `semantic-release` only triggers a new version release for specific ones:
+
+*   **Triggers a release:**
+    *   `feat`: A new feature (triggers a **minor** version bump)
+    *   `fix`: A bug fix (triggers a **patch** version bump)
+    *   Any commit containing `BREAKING CHANGE:` in its body/footer (triggers a **major** version bump)
+
+*   **Do NOT trigger a release (but appear in changelog):**
+    *   `build`: Changes that affect the build system or external dependencies
+    *   `chore`: Other changes that don't modify source or test files
+    *   `ci`: Changes to CI configuration files and scripts
+    *   `docs`: Documentation only changes
+    *   `perf`: A code change that improves performance
+    *   `refactor`: A code change that neither fixes a bug nor adds a feature
+    *   `revert`: Reverts a previous commit
+    *   `style`: Changes that do not affect the meaning of the code
+    *   `test`: Adding missing tests or correcting existing tests
+
+This behavior ensures new versions are published primarily for user-facing changes.
+
+## 3. Summary of the Release Workflow with `semantic-release`
+
+1.  **Develop Features/Fixes:** Work is done on short-lived `feature/*` or `fix/*` branches, branched off `develop`.
+2.  **Merge into `develop`:** Once complete, `feature/*` or `fix/*` branches are merged into `develop` via Pull Requests. Ensure all commits adhere to Conventional Commits.
+3.  **Prepare for Release:** When `develop` contains enough features/fixes for a release, it is merged into `main` via a Pull Request.
+    *   **Important:** This merge **must preserve individual commit history** (e.g., using a standard merge commit or rebase-merge, **NOT squash merge**), so `semantic-release` can analyze the Conventional Commits.
+4.  **Automated Release on `main`:** Upon merging into `main`, our CI/CD pipeline (e.g., GitHub Actions) will automatically trigger `semantic-release`.
+    *   `semantic-release` will analyze the commit history on `main` since the last release.
+    *   If new `feat`, `fix`, or `BREAKING CHANGE` commits are detected, it will:
+        *   Determine the appropriate next version number (patch, minor, or major).
+        *   Generate or update `CHANGELOG.md`.
+        *   Commit the version bump and updated changelog.
+        *   Create a Git tag for the new version.
+        *   Publish the release (e.g., to npm, GitHub Releases).
+5.  **Deployment (if applicable):** The newly tagged `main` branch can then trigger deployment to production environments.

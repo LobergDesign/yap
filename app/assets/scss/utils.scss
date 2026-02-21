@@ -8,14 +8,18 @@
   text-align: center;
 }
 
+$spacing-tb: clamp(25px, 8vw, 100px);
 .spacing-tb {
-  margin-top: clamp(20px, 8vw, 80px);
-  margin-bottom: clamp(20px, 8vw, 80px);
+  margin-top: $spacing-tb;
+  margin-bottom: $spacing-tb;
 }
 .flex {
   display: flex;
 }
-.flex-center {
+.flex-center-center {
   justify-content: center;
+  align-items: center;
+}
+.flex-vertical-center {
   align-items: center;
 }

@@ -63,7 +63,10 @@ const handleClearError = () => clearError({ redirect: '/' });
     <div v-if="isDev">
       <details>
         <summary>Technical Details (dev only)</summary>
-        <p><strong>Message:</strong> {{ error?.statusText }}</p>
+        <p>
+          <strong>Message:</strong>
+          {{ error?.message || error?.statusText }}
+        </p>
         <pre v-if="error?.data">{{ JSON.stringify(error.data, null, 2) }}</pre>
       </details>
     </div>

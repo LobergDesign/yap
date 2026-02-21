@@ -35,6 +35,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'nuxt-security',
     'nuxt-weather-module',
+    '@tresjs/nuxt',
   ],
   css: ['~/assets/scss/main.scss', '~/assets/scss/settings-theme.scss'],
   image: {

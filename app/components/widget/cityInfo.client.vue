@@ -25,7 +25,7 @@ onUnmounted(() => {
         hour="2-digit"
         minute="2-digit"
       />
-      <LazyDynamicWeather v-model:status="weatherStatus" class="text-c" />
+      <LazyDynamicWeather class="text-c" @status="weatherStatus" />
     </div>
   </Widget>
 </template>
