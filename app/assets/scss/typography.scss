@@ -1,12 +1,18 @@
-h2 {
+h2,
+.h2 {
   font-size: clamp(20px, 3vw, 40px);
   font-variation-settings: 'wght' 400;
   margin: clamp(5px, 3vw, 20px) 0 clamp(10px, 5vw, 30px);
 }
-h3 {
+h3,
+.h3 {
+  font-size: clamp(15px, 1.8vw, 20px);
+  font-variation-settings: 'wght' 400;
   margin: 0.5rem 0;
 }
-h4 {
+h4,
+.h4 {
+  font-size: clamp(15px, 1vw, 16px);
   font-size: 12px;
   margin: 0.4rem 0;
 }
