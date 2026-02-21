@@ -13,5 +13,13 @@ query GetFrontpage($id: ID) {
     introContent {
       ...ContentSideBySideFragment
     }
+    spotlight {
+      title
+      subHeader
+      slug
+      image {
+        ...ImageFragment
+      }
+    }
   }
 }
