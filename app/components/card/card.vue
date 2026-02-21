@@ -76,20 +76,24 @@ $svg-size: clamp(30px, 3vw, 50px);
 $hovedered-position: 20px;
 .card {
   position: relative;
-  padding: clamp(15px, 2vw, 30px);
+  padding: clamp(8px, 2vw, 30px) clamp(12px, 2vw, 30px);
   border-radius: $border-radius;
-  &:hover {
-    .card__hovered {
-      opacity: 1;
-      transform: scale(1);
-      transition-delay: 0.02s;
-    }
 
-    &::after {
-      opacity: 0;
-      transform: scale(0.95);
+  @media (pointer: fine) {
+    &:hover {
+      .card__hovered {
+        opacity: 1;
+        transform: scale(1);
+        transition-delay: 0.02s;
+      }
+
+      &::after {
+        opacity: 0;
+        transform: scale(0.95);
+      }
     }
   }
+
   // border
   &::after {
     content: '';
@@ -117,7 +121,11 @@ $hovedered-position: 20px;
   p {
     font-size: 11px;
   }
-
+  @media (pointer: fine) {
+    &__hovered {
+      display: none;
+    }
+  }
   // visible content inside card
   &__hovered {
     position: absolute;
@@ -153,7 +161,9 @@ $hovedered-position: 20px;
     flex-shrink: 0;
 
     span {
+      color: theme-color('secondary');
       font-size: clamp(14px, 2vw, 40px);
+      font-variation-settings: 'wght' 500;
       padding: 0 8px;
     }
 

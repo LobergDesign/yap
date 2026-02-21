@@ -42,7 +42,6 @@ onMounted(async () => {
 
 const remove = (e: MouseEvent) => {
   const el = e.currentTarget as HTMLElement;
-
   gsap.to(el, {
     duration: 0.4,
     y: '+=60',
