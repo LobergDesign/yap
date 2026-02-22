@@ -20,7 +20,7 @@ onMounted(() => {
       hour="2-digit"
       minute="2-digit"
     />
-    <DynamicWeather v-model:status="weatherStatus" />
+    <DynamicWeather @status="weatherStatus" />
   </div>
 </template>
 

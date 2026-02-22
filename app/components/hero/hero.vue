@@ -62,6 +62,7 @@ watch(
   <div class="hero place-c-c">
     <div>
       <LazyGradientEffect :primary-color :secondary-color :accent-color />
+      <!-- <LazyGradientEffectTest :primary-color :secondary-color :accent-color /> -->
       <h1>
         <LogoLarge />
       </h1>

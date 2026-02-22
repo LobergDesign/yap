@@ -35,12 +35,14 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'nuxt-security',
     'nuxt-weather-module',
+    '@tresjs/nuxt',
   ],
   css: ['~/assets/scss/main.scss', '~/assets/scss/settings-theme.scss'],
   image: {
     providers: {
       hygraph: {
-        baseurl: 'https://media.graphassets.com',
+        baseurl:
+          'https://eu-central-1-shared-euc1-02.graphassets.com/AO0xo1wOBRUu1cYgu6oD9z',
       },
     },
   },
@@ -92,7 +94,7 @@ export default defineNuxtConfig({
         'img-src': [
           "'self'",
           'data:',
-          'https://media.graphassets.com', // hygraph images
+          'https://eu-central-1-shared-euc1-02.graphassets.com/AO0xo1wOBRUu1cYgu6oD9z/',
         ],
         'style-src': [
           "'self'",
