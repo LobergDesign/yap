@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/LobergDesign/yap/compare/v1.0.0...v1.1.0) (2026-02-22)
+
+
+### Features
+
+* handle devices hover and work on gitflow, and update all packages ([2f6c61c](https://github.com/LobergDesign/yap/commit/2f6c61c42e0d4518ff66970eb87585c014c964d9))
+* **ui:** implement new image component and update spotlight styles ([800e8ed](https://github.com/LobergDesign/yap/commit/800e8edc7f2f111ddc2e4caf356a0827d61d4ef0))
+* Working with images from hygraph, and basic markup ([36edb56](https://github.com/LobergDesign/yap/commit/36edb5611db19deadf796e281974fd15e6f67488))
+
 # 1.0.0 (2026-01-31)
 
 
