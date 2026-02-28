@@ -1,13 +1,8 @@
 <script lang="ts" setup>
-import type { RichText } from '~/types/shared/rte';
-
-interface Sections {
-  sectionOne?: RichText | null;
-  sectionTwo?: RichText | null;
-}
+import type { ContentSideBySideFragmentFragment } from '~/types/generated/graphql';
 
 defineProps<{
-  data: Sections;
+  data: ContentSideBySideFragmentFragment;
 }>();
 </script>
 <template>

@@ -66,13 +66,22 @@ const cards = [
           />
         </div>
       </div>
-      <div class="grid-r spacing-tb">
+      <div class="grid-r">
         <Spotlight
           v-if="data.frontpage.spotlight"
+          class="spacing-tb"
           :title="data.frontpage.spotlight.title"
           :sub-header="data.frontpage.spotlight.subHeader"
           :link-href="data.frontpage.spotlight.slug"
           :image="data.frontpage.spotlight.image"
+        />
+      </div>
+      <div class="grid-r">
+        <SelectedProjects
+          v-if="data.frontpage.projects.length"
+          class="spacing-tb"
+          :title="data.frontpage.selectedProjectsTitle"
+          :slug-list="data.frontpage.projects"
         />
       </div>
     </div>
