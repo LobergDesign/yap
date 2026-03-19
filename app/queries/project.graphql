@@ -16,5 +16,6 @@ query GetProject($slug: String!) {
     projectCaseType
     createdAt
     updatedAt
+    executionArea
   }
 }

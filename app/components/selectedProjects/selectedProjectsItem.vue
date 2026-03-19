@@ -6,12 +6,28 @@ const { slug } = defineProps<{
 const { data, pending } = await useProject(slug);
 </script>
 <template>
-  <div class="selected-projects-item">
-    <pre>
-    {{ data }}
-   </pre
-    >
+  <div v-if="!pending && data" class="selected-projects-item">
+    <NuxtLink v-if="data.project" :to="data.project?.slug">
+      <p>
+        {{ data.project.createdAt }}
+      </p>
+      <p>
+        {{ data.project.title }}
+      </p>
+      <p>
+        {{ data.project.projectCaseType }}
+      </p>
+      <ul>
+        <li v-for="value in data.project.executionArea" :key="value">
+          {{ value }}
+        </li>
+      </ul>
+      <pre>
+        {{ data.project }}
+      </pre>
+    </NuxtLink>
   </div>
+  <div v-else>loading...</div>
 </template>
 
 <style lang="scss" scoped>
