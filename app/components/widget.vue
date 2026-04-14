@@ -15,7 +15,7 @@ const emit = defineEmits<{
     <template v-else>
       <div class="widget__header justify-between">
         <h4 v-if="title">{{ title }}</h4>
-        <button @click="emit('close')">
+        <button type="button" @click="emit('close')">
           <nuxt-icon name="close" />
         </button>
       </div>

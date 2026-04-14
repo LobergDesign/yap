@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { RichText } from '~/types/shared/rte';
-import DOMPurify from 'dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 
 defineProps<{
   data: RichText;

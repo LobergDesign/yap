@@ -14,11 +14,9 @@ export const useFrontpage = async () => {
   const { handleError } = useErrorHandler();
 
   const { data, error, pending, refresh, status } =
-    await useAsyncData<GetFrontpageQuery>('frontpage', () => executeQuery(), {
-      // Use Nuxt's built-in cache if data already exists
-      getCachedData: (key) =>
-        useNuxtApp().payload.data[key] ?? useNuxtData(key).data.value,
-    });
+    await useCachedFetchFactory<GetFrontpageQuery>('frontpage', () =>
+      executeQuery(),
+    );
 
   // Handle errors - routes 404/500+ to error.vue
   watch(error, (err) => {

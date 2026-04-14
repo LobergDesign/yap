@@ -46,6 +46,7 @@ export default defineNuxtConfig({
       },
     },
   },
+  experimental: { payloadExtraction: 'client' },
   vite: {
     css: {
       preprocessorOptions: {
@@ -55,6 +56,17 @@ export default defineNuxtConfig({
           `,
         },
       },
+    },
+    optimizeDeps: {
+      include: [
+        'three',
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        'isomorphic-dompurify',
+        'gsap',
+        'gsap/ScrollTrigger',
+        'gsap/SplitText',
+      ],
     },
   },
 

@@ -65,13 +65,13 @@ const handleClearError = () => clearError({ redirect: '/' });
         <summary>Technical Details (dev only)</summary>
         <p>
           <strong>Message:</strong>
-          {{ error?.message || error?.statusText }}
+          {{ error?.statusText || error?.statusText }}
         </p>
         <pre v-if="error?.data">{{ JSON.stringify(error.data, null, 2) }}</pre>
       </details>
     </div>
 
-    <button @click="handleClearError">Go Home</button>
-    <button @click="() => clearError()">Try Again</button>
+    <button type="button" @click="handleClearError">Go Home</button>
+    <button type="button" @click="() => clearError()">Try Again</button>
   </div>
 </template>
