@@ -1,3 +1,14 @@
+# [1.2.0](https://github.com/LobergDesign/yap/compare/v1.1.0...v1.2.0) (2026-05-14)
+
+
+### Features
+
+* output projects, update packages ([50b252d](https://github.com/LobergDesign/yap/commit/50b252d4f84a4c5d113da77efb57c95b41eeadff))
+* refactor navigation, styling, and project listing with dynamic config ([00f42f0](https://github.com/LobergDesign/yap/commit/00f42f0cd1167bb7a2e9467e4a0d23ed7ea535dc))
+* update dependencies and refactor UI components ([2e6e89b](https://github.com/LobergDesign/yap/commit/2e6e89b6552416742ef3d94e24b470e894e1a00c))
+* work on selected projects and type changes ([7f899c9](https://github.com/LobergDesign/yap/commit/7f899c9d90b2a8962f72bc9268358eb1d7d879b6))
+* work on selectedprojects, update packages, work on widget ([e4c24f3](https://github.com/LobergDesign/yap/commit/e4c24f38a4c4138acb6b43cba3f65ceb73389c6a))
+
 # [1.1.0](https://github.com/LobergDesign/yap/compare/v1.0.0...v1.1.0) (2026-02-22)
 
 
