@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { HeroFieldsFragment } from '~/types/generated/graphql';
+import type { HeroFragmentFragment } from '~/types/generated/graphql';
 const { hero } = defineProps<{
-  hero: HeroFieldsFragment;
+  hero: HeroFragmentFragment;
 }>();
 
 const primaryColor = ref(hexToRgb('#141412'));

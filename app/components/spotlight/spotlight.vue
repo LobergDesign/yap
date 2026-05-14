@@ -1,15 +1,20 @@
 <script lang="ts" setup>
-import type { ImageFragmentFragment } from '~/types/generated/graphql';
+import type { GetFrontpageQuery } from '~/types/generated/graphql';
+
+type SpotlightData = NonNullable<
+  NonNullable<GetFrontpageQuery['frontpage']>['spotlight']
+>;
+
 defineProps<{
-  title: string;
-  subHeader?: string | null | undefined;
-  linkHref: string;
-  image: ImageFragmentFragment;
+  title: SpotlightData['title'];
+  subHeader: SpotlightData['subHeader'];
+  linkHref: SpotlightData['slug'];
+  image: SpotlightData['image'];
 }>();
 </script>
 <template>
   <div class="spotlight">
-    <NuxtLink :to="`/projects/${linkHref}`">
+    <NuxtLink v-if="image" :to="`/projects/${linkHref}`">
       <UiImage :image="image" class="spotlight__image" />
     </NuxtLink>
     <div class="grid-r">
@@ -20,7 +25,7 @@ defineProps<{
         <p v-if="subHeader" class="h3">{{ subHeader }}</p>
       </div>
       <div class="grid-c-12 grid-c-sm-2 spotlight__link">
-        <UiLink text="Go to case" :href="`/projects/${linkHref}`" />
+        <UiLink text="Go to project" :href="`/projects/${linkHref}`" />
       </div>
     </div>
   </div>

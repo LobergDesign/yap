@@ -1,15 +1,7 @@
+@use '@lobergdesign/dot-grid/scss' with (
+  $grid-columns: 8,
+  $grid-w-width: 85vw
+);
 @use 'global' as *;
-@use '@lobergdesign/dot-grid';
 @use 'typography' as *;
 @use 'utils' as *;
-
-// Override dot-grid CSS variables
-:root {
-  --grid-w-max-width: 190rem;
-  --grid-w-min-width: 36vw;
-  --grid-w-width: 88vw;
-  --grid-columns: 8;
-}
-.grid-r {
-  grid-template-columns: repeat(var(--grid-columns, 8), 1fr);
-}

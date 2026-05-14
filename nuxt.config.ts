@@ -46,15 +46,27 @@ export default defineNuxtConfig({
       },
     },
   },
+  experimental: { payloadExtraction: 'client' },
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
           additionalData: `
-            @use "@/assets/scss/_vars.scss" as *;
+            @use "@/assets/scss/_toolbox.scss" as *;
           `,
         },
       },
+    },
+    optimizeDeps: {
+      include: [
+        'three',
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        'isomorphic-dompurify',
+        'gsap',
+        'gsap/ScrollTrigger',
+        'gsap/SplitText',
+      ],
     },
   },
 

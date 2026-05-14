@@ -6,11 +6,10 @@ updates:
     schedule:
       interval: 'weekly'
     # Raise pull requests for version updates
-    # to npm against the `develop` branch
-    target-branch: 'develop'
+    # to npm against the `main` branch
+    target-branch: 'main'
     # Labels to add to the pull requests
     labels:
-      - 'npm'
       - 'dependencies'
     # Group patch and minor updates into a single PR
     groups:
@@ -25,7 +24,7 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
-    target-branch: 'develop'
+    target-branch: 'main'
     labels:
       - 'github-actions'
       - 'dependencies'

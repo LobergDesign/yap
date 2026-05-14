@@ -7,7 +7,6 @@ const gap = 10;
 
 const layout = () => {
   const boxes = gsap.utils.toArray<HTMLElement>(target);
-  console.log('target layout', boxes);
   tween.value?.kill();
 
   tween.value = gsap.to(boxes, {

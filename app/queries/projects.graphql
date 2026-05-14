@@ -1,0 +1,10 @@
+query GetProjects {
+  projects {
+    id
+    title
+    slug
+    createdAt
+    projectCaseType
+    executionArea
+  }
+}

@@ -14,14 +14,18 @@ watch([font, theme, mode], () => applySettings());
 
 <template>
   <div>
-    <button class="trigger" @click="isOpen = !isOpen">
+    <button type="button" class="trigger" @click="isOpen = !isOpen">
       <nuxt-icon name="settings" />
     </button>
     <Transition name="panel">
       <div v-if="isOpen" class="panel">
         <div class="grid-r">
           <h3 class="grid-c-6">Settings</h3>
-          <button class="grid-c-2 close place-c-r" @click="isOpen = false">
+          <button
+            type="button"
+            class="grid-c-2 close place-c-r"
+            @click="isOpen = false"
+          >
             <nuxt-icon name="close" />
           </button>
         </div>

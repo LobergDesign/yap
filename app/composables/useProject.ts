@@ -14,14 +14,8 @@ export const useProject = async (slug: string) => {
   const { handleError } = useErrorHandler();
 
   const { data, error, pending, refresh, status } =
-    await useLazyAsyncData<GetProjectQuery>(
-      `project-${slug}`,
-      () => executeQuery(),
-      {
-        // Use Nuxt's built-in cache if data already exists
-        getCachedData: (key) =>
-          useNuxtApp().payload.data[key] ?? useNuxtData(key).data.value,
-      },
+    await useCachedFetchFactory<GetProjectQuery>(`project-${slug}`, () =>
+      executeQuery(),
     );
 
   // Handle errors - routes 404/500+ to error.vue

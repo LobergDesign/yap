@@ -7,6 +7,7 @@ defineProps<{
 <template>
   <NuxtLink :to="href" class="cta">
     {{ text }}
+    <slot></slot>
     <nuxt-icon name="arrow" />
     <div class="line" />
     <div class="inner-line" />

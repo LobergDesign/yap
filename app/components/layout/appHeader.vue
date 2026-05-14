@@ -1,4 +1,6 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const appConfig = useAppConfig();
+</script>
 <template>
   <header class="header grid-w">
     <ul class="grid-r">
@@ -8,15 +10,19 @@
         </NuxtLink>
       </li>
       <li class="grid-c-1 place-c-l">
-        <NuxtLink to="/projects" class="header__nav-item"
-          >Projects<sub>(5)</sub></NuxtLink
+        <NuxtLink :to="appConfig.slugProjects" class="header__nav-item"
+          >Projects<sub><LazyProjectCount /></sub
+        ></NuxtLink>
+      </li>
+      <li class="grid-c-1 place-c-l">
+        <NuxtLink :to="appConfig.slugAbout" class="header__nav-item"
+          >About</NuxtLink
         >
       </li>
       <li class="grid-c-1 place-c-l">
-        <NuxtLink to="/about-me" class="header__nav-item">About me</NuxtLink>
-      </li>
-      <li class="grid-c-1 place-c-l">
-        <NuxtLink to="/contact" class="header__nav-item">Contact</NuxtLink>
+        <NuxtLink :to="appConfig.slugContact" class="header__nav-item"
+          >Contact</NuxtLink
+        >
       </li>
     </ul>
   </header>

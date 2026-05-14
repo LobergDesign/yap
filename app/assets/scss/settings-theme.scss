@@ -1,5 +1,5 @@
 // Default Theme
-:root[data-mode='default'][data-mode='dark'] {
+:root[data-theme='default'][data-mode='dark'] {
   --primary: $brand-light;
   --secondary: $brand-dark;
   --accent: $brand-accent;
