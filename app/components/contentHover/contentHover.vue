@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 defineProps<{
   title: string;
+  large?: boolean;
 }>();
 
 const { gsap, SplitText } = useGsap();
@@ -43,7 +44,7 @@ onMounted(() => {
   <div class="content-hover" @mouseenter="play" @mouseleave="pause">
     <slot />
 
-    <div class="content-hover__hovered">
+    <div class="content-hover__hovered" :class="large && 'large'">
       <div ref="wordTrack" class="content-hover__word-track">
         <div v-for="copy in 2" :key="copy" class="content-hover__word-content">
           <span class="content-hover__hovered-text">{{ title }}</span>
@@ -80,21 +81,8 @@ $hovedered-position: 20px;
     }
   }
 
-  // border
   &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    border-radius: $border-radius;
-    opacity: $border-opacity;
-    border: 1px solid theme-color('secondary');
-    transition:
-      opacity $transition--fast,
-      transform $transition--fast;
+    @include border;
   }
 
   @media (pointer: fine) {
@@ -145,6 +133,14 @@ $hovedered-position: 20px;
 
     .nuxt-icon {
       margin: 0;
+    }
+  }
+
+  .large {
+    .content-hover__word-content {
+      span {
+        font-size: clamp(30px, 10vw, 80px);
+      }
     }
   }
 }

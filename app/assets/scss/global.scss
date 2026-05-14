@@ -1,8 +1,5 @@
 @use '@/assets/scss/_toolbox.scss' as *;
-:root {
-  --grid-w-max-width: 100px;
-  --grid-w-min-width: 15vw;
-}
+
 body {
   font-family: var(--main-font);
   font-style: normal;

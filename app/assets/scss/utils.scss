@@ -9,9 +9,14 @@
 }
 
 $spacing-tb: clamp(25px, 8vw, 100px);
+$spacing-tb-m: clamp(18px, 4vw, 50px);
 .spacing-tb {
   margin-top: $spacing-tb;
   margin-bottom: $spacing-tb;
+}
+.spacing-tb-m {
+  margin-top: $spacing-tb-m;
+  margin-bottom: $spacing-tb-m;
 }
 .flex {
   display: flex;

@@ -6,7 +6,7 @@
       "name": "yap",
       "dependencies": {
         "@graphql-typed-document-node/core": "^3.2.0",
-        "@lobergdesign/dot-grid": "^3.0.0",
+        "@lobergdesign/dot-grid": "^3.1.1",
         "@nuxt/fonts": "^0.14.0",
         "@nuxt/image": "^2.0.0",
         "@vueuse/core": "^14.3.0",
@@ -454,7 +454,7 @@
 
     "@kwsites/promise-deferred": ["@kwsites/promise-deferred@1.1.1", "", {}, "sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw=="],
 
-    "@lobergdesign/dot-grid": ["@lobergdesign/dot-grid@3.0.0", "", {}, "sha512-zB8MYETy53ltjGKzWlU8z9js3Xx4mf/WQkNT7MlqXLssRYzdg1uAepsTEBppC9nvdK1zG3fliHwP3I1NTgHaCw=="],
+    "@lobergdesign/dot-grid": ["@lobergdesign/dot-grid@3.1.1", "", {}, "sha512-RFXO4a27QRthJv/4ZRu1xt8o6/0k8DGMPHsXtvF3h56uMYSMrTtcFCo20b+eB0P4DzdOGzWkHP962xyu7SBUsg=="],
 
     "@mapbox/node-pre-gyp": ["@mapbox/node-pre-gyp@2.0.3", "", { "dependencies": { "consola": "^3.2.3", "detect-libc": "^2.0.0", "https-proxy-agent": "^7.0.5", "node-fetch": "^2.6.7", "nopt": "^8.0.0", "semver": "^7.5.3", "tar": "^7.4.0" }, "bin": { "node-pre-gyp": "bin/node-pre-gyp" } }, "sha512-uwPAhccfFJlsfCxMYTwOdVfOz3xqyj8xYL3zJj8f0pb30tLohnnFPhLuqp4/qoEz8sNxe4SESZedcBojRefIzg=="],
 

@@ -11,25 +11,16 @@ defineProps<{
 
 <style lang="scss" scoped>
 .tag {
+  display: inline-block;
   color: theme-color('secondary');
   font-size: 10px;
   font-variation-settings: 'wght' 400;
   position: relative;
-  // border
+  padding: 5px 12px;
+  margin-right: clamp(3px, 0.4vw, 5px);
+  margin-bottom: clamp(2px, 0.3vw, 4px);
   &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    border-radius: $border-radius;
-    opacity: $border-opacity;
-    border: 1px solid theme-color('secondary');
-    transition:
-      opacity $transition--fast,
-      transform $transition--fast;
+    @include border;
   }
 }
 </style>

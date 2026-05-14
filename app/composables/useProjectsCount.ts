@@ -1,20 +1,18 @@
 import {
-  GetFrontpageDocument,
-  type GetFrontpageQuery,
-  type GetFrontpageQueryVariables,
+  GetProjectCountDocument,
+  type GetProjectCountQuery,
+  type GetProjectCountQueryVariables,
 } from '~/types/generated/graphql';
 
-export const useFrontpage = async () => {
+export const useProjectCount = async () => {
   const { executeQuery } = useGraphQL<
-    GetFrontpageQuery,
-    GetFrontpageQueryVariables
-  >(GetFrontpageDocument, {
-    id: CONTENT_IDS.FRONTPAGE,
-  });
+    GetProjectCountQuery,
+    GetProjectCountQueryVariables
+  >(GetProjectCountDocument);
   const { handleError } = useErrorHandler();
 
   const { data, error, pending, refresh, status } =
-    await useCachedFetchFactory<GetFrontpageQuery>('frontpage', () =>
+    await useLazyCachedFetchFactory<GetProjectCountQuery>(`project-count`, () =>
       executeQuery(),
     );
 

@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.2.0",
-    "@lobergdesign/dot-grid": "^3.0.0",
+    "@lobergdesign/dot-grid": "^3.1.1",
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/image": "^2.0.0",
     "@vueuse/core": "^14.3.0",

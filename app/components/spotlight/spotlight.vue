@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import type { GetFrontpageQuery } from '~/types/generated/graphql';
 
-type SpotlightData = NonNullable<NonNullable<GetFrontpageQuery['frontpage']>['spotlight']>;
+type SpotlightData = NonNullable<
+  NonNullable<GetFrontpageQuery['frontpage']>['spotlight']
+>;
 
 defineProps<{
   title: SpotlightData['title'];
@@ -23,7 +25,7 @@ defineProps<{
         <p v-if="subHeader" class="h3">{{ subHeader }}</p>
       </div>
       <div class="grid-c-12 grid-c-sm-2 spotlight__link">
-        <UiLink text="Go to case" :href="`/projects/${linkHref}`" />
+        <UiLink text="Go to project" :href="`/projects/${linkHref}`" />
       </div>
     </div>
   </div>

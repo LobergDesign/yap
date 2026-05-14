@@ -27,6 +27,7 @@ $svg-size: clamp(30px, 3vw, 50px);
 .card {
   p {
     font-size: 11px;
+    text-align: left;
   }
   &__content {
     ::v-deep(.nuxt-icon svg) {

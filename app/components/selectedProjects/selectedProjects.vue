@@ -3,10 +3,19 @@ import type { GetFrontpageQuery } from '~/types/generated/graphql';
 
 type Frontpage = NonNullable<GetFrontpageQuery['frontpage']>;
 
-defineProps<{
+const { slugList } = defineProps<{
   title: Frontpage['selectedProjectsTitle'];
   slugList: Frontpage['projects'];
 }>();
+const appConfig = useAppConfig();
+const { data, pending } = await useProjects();
+
+const selectedProjects = computed(() => {
+  if (!data?.value?.projects) return [];
+  return data.value.projects.filter((project) =>
+    slugList?.some((slug) => slug.slug === project.slug),
+  );
+});
 </script>
 <template>
   <div class="selected-projects">
@@ -16,12 +25,20 @@ defineProps<{
       </div>
     </div>
     <div class="grid-c-12">
-      <SelectedProjectsItem
-        v-for="(slug, index) in slugList"
-        :key="index"
-        :slug="slug.slug"
-      />
-      <UiLink text="See all projects (12)" href="/projects" />
+      <div class="spacing-tb-m">
+        <p v-if="pending">Loading...</p>
+        <template v-else-if="data">
+          <SelectedProjectsItem
+            v-for="value in selectedProjects"
+            :key="value.slug"
+            :project="value"
+          />
+        </template>
+        <p v-else>no projects...</p>
+      </div>
+      <UiLink text="See all projects" :href="appConfig.slugProjects"
+        ><LazyProjectCount
+      /></UiLink>
     </div>
   </div>
 </template>
