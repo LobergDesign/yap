@@ -78,7 +78,7 @@ const cards = [
       </div>
       <div class="grid-r">
         <LazySelectedProjects
-          v-if="data.frontpage.projects.length"
+          v-if="data.frontpage.projects?.length"
           class="spacing-tb"
           :title="data.frontpage.selectedProjectsTitle"
           :slug-list="data.frontpage.projects"

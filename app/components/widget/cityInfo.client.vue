@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-const weatherStatus = ref('pending');
+const { data, pending, refresh } = await useWeather();
 const setNowTime = ref(Date.now());
 const interval = ref<NodeJS.Timeout | null>(null);
 
-onMounted(async () => {
-  await nextTick();
-  interval.value = setInterval(() => {
-    setNowTime.value = Date.now();
-  }, 60000); // Update every minute
-});
+interval.value = setInterval(() => {
+  setNowTime.value = Date.now();
+  refresh();
+}, 60000);
 
 onUnmounted(() => {
   if (interval.value) clearInterval(interval.value);
@@ -16,7 +14,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Widget :pending="false" title="Copenhagen">
+  <Widget :pending title="Copenhagen">
     <div class="city-info">
       <NuxtTime
         :datetime="setNowTime"
@@ -25,7 +23,9 @@ onUnmounted(() => {
         hour="2-digit"
         minute="2-digit"
       />
-      <LazyDynamicWeather class="text-c" @status="weatherStatus" />
+      <pre>
+        {{ data }}
+      </pre>
     </div>
   </Widget>
 </template>
