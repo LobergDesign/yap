@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { gsap } from 'gsap';
-const { projectSlug = null } = defineProps<{
+defineProps<{
   projectSlug?: string;
 }>();
 
@@ -8,7 +8,7 @@ const target = '.widget-box';
 const tween = shallowRef<gsap.core.Tween | null>(null);
 const gap = 10;
 
-const layout = () => {
+const stackElements = () => {
   const boxes = gsap.utils.toArray<HTMLElement>(target);
   tween.value?.kill();
   if (!boxes.length) return;
@@ -30,14 +30,10 @@ const layout = () => {
   });
 };
 
-onMounted(async () => {
-  requestAnimationFrame(() => {
-    gsap.set(target, {
-      y: 60,
-      opacity: 0,
-    });
-    layout();
-  });
+onMounted(() => {
+  setTimeout(() => {
+    requestAnimationFrame(stackElements);
+  }, 1500);
 });
 
 const remove = (e: MouseEvent) => {
@@ -50,7 +46,7 @@ const remove = (e: MouseEvent) => {
     ease: 'power3.in',
     onComplete: () => {
       el.parentElement?.removeChild(el);
-      layout();
+      stackElements();
     },
   });
 };
@@ -69,5 +65,10 @@ onUnmounted(() => tween.value?.kill());
     <WidgetCityInfo class="widget-box" @click="remove" />
   </div>
 </template>
-
-<style></style>
+<style lang="scss" scoped>
+.widget-box {
+  opacity: 0;
+  transform: translateY(120px);
+  will-change: transform, opacity;
+}
+</style>
