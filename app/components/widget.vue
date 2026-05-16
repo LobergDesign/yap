@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-const { pending, title = '' } = defineProps<{
-  pending: boolean;
+defineProps<{
   title?: string;
 }>();
 
@@ -11,18 +10,15 @@ const emit = defineEmits<{
 
 <template>
   <div class="widget">
-    <div v-if="pending">loading...</div>
-    <template v-else>
-      <div class="widget__header justify-between">
-        <h4 v-if="title">{{ title }}</h4>
-        <button type="button" @click="emit('close')">
-          <nuxt-icon name="close" />
-        </button>
-      </div>
-      <div class="widget__body">
-        <slot />
-      </div>
-    </template>
+    <div class="widget__header justify-between">
+      <h4 v-if="title">{{ title }}</h4>
+      <button type="button" @click="emit('close')">
+        <nuxt-icon name="close" />
+      </button>
+    </div>
+    <div class="widget__body">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -37,7 +33,6 @@ const emit = defineEmits<{
   box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(5px);
   border-radius: 12px;
-  will-change: transform, opacity;
   &__header button {
     position: absolute;
     top: 2px;

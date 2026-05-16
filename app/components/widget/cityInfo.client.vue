@@ -1,20 +1,35 @@
 <script lang="ts" setup>
+import type { WeatherIcon } from '~/types/shared/weather';
 const { data, pending, refresh } = await useWeather();
 const setNowTime = ref(Date.now());
-const interval = ref<NodeJS.Timeout | null>(null);
+let timeInterval: NodeJS.Timeout | null = null;
+let weatherUpdateInterval: NodeJS.Timeout | null = null;
 
-interval.value = setInterval(() => {
-  setNowTime.value = Date.now();
-  refresh();
-}, 60000);
+onMounted(() => {
+  timeInterval = setInterval(() => {
+    setNowTime.value = Date.now();
+  }, 30 * 1000);
 
+  weatherUpdateInterval = setInterval(refresh, 5 * 60 * 1000);
+});
 onUnmounted(() => {
-  if (interval.value) clearInterval(interval.value);
+  if (timeInterval) clearInterval(timeInterval);
+  if (weatherUpdateInterval) clearInterval(weatherUpdateInterval);
+});
+
+const setIcon = computed<WeatherIcon>(() => {
+  if (!data.value?.current_weather) return 'partly-cloudy-day';
+
+  const { weathercode, is_day } = data.value.current_weather;
+  const iconSet = WEATHER_CODE_MAP[weathercode];
+
+  if (!iconSet) return 'partly-cloudy-day';
+  return is_day === 1 ? iconSet.day : iconSet.night;
 });
 </script>
 
 <template>
-  <Widget :pending title="Copenhagen">
+  <Widget title="Copenhagen">
     <div class="city-info">
       <NuxtTime
         :datetime="setNowTime"
@@ -23,9 +38,14 @@ onUnmounted(() => {
         hour="2-digit"
         minute="2-digit"
       />
-      <pre>
-        {{ data }}
-      </pre>
+      <div class="justify-center">
+        <p v-if="pending">Getting weather report...</p>
+        <nuxt-icon
+          v-else
+          class="city-info__weather"
+          :name="`weather/${setIcon}`"
+        />
+      </div>
     </div>
   </Widget>
 </template>
@@ -37,7 +57,7 @@ onUnmounted(() => {
     opacity: 0.5;
     margin-bottom: 5px;
   }
-  ::v-deep(.dynamic-weather-icon) svg {
+  ::v-deep(.city-info__weather) svg {
     height: clamp(8rem, 8vw, 10rem);
     width: clamp(8rem, 8vw, 10rem);
   }
