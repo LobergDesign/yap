@@ -2,16 +2,16 @@
 const { slug } = defineProps<{
   slug: string;
 }>();
-
-const { data, pending } = await useProject(slug);
+const appConfig = useAppConfig();
+const { data } = await useProject(slug);
 </script>
 
 <template>
-  <Widget :pending :title="data?.project?.title">
+  <Widget :title="data?.project?.title">
     <NuxtLink
       v-if="data?.project"
       class="widget__body"
-      :to="`/projects/${data.project.slug}`"
+      :to="`${appConfig.slugProjects}/${data.project.slug}`"
     >
       <UiTypeIcon
         v-if="data.project.projectCaseType"

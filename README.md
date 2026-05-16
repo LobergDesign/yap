@@ -73,3 +73,22 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Testing Locally with Vercel Runtime
+
+To test the app exactly as it runs on Vercel, use the Vercel CLI:
+
+```bash
+npx vercel dev
+```
+
+This runs the app through Vercel's local runtime, including serverless functions and environment variables from your linked Vercel project.
+
+### Local production build (non-Vercel)
+
+`bun run preview` does not work with the Vercel preset. To preview a standard production build locally:
+
+```bash
+NITRO_PRESET=node-server bun run build
+node .output/server/index.mjs
+```

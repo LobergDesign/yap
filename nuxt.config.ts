@@ -3,24 +3,24 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
-  // Server-only runtime config (not exposed to client)
   runtimeConfig: {
     graphqlHost: process.env.GQL_HOST,
     graphqlToken: process.env.GQL_TOKEN,
     revalidateSecret: process.env.REVALIDATE_SECRET,
   },
-  // Deployment preset (change to 'netlify' if using Netlify)
   nitro: {
-    preset: 'vercel',
+    preset: process.env.NITRO_PRESET ?? 'vercel',
+    future: {
+      nativeSWR: true,
+    },
   },
 
-  // Route-level caching with SWR
   routeRules: {
     // Cache all pages for 2 hours in production only
     '/**':
       process.env.NODE_ENV === 'production'
         ? {
-            swr: 7200,
+            isr: 7200,
           }
         : {},
     // Don't cache API routes (called during page regeneration only)
@@ -34,7 +34,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/fonts',
     'nuxt-security',
-    'nuxt-weather-module',
     '@tresjs/nuxt',
   ],
   css: ['~/assets/scss/main.scss', '~/assets/scss/settings-theme.scss'],
@@ -99,10 +98,13 @@ export default defineNuxtConfig({
     ],
   },
 
-  // security
   security: {
     headers: {
       contentSecurityPolicy: {
+        'default-src': ["'self'"],
+        'base-uri': ["'self'"],
+        'object-src': ["'none'"],
+        'frame-ancestors': ["'none'"],
         'img-src': [
           "'self'",
           'data:',

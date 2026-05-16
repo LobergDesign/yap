@@ -1,22 +1,35 @@
 <script lang="ts" setup>
-const weatherStatus = ref('pending');
+import type { WeatherIcon } from '~/types/shared/weather';
+const { data, pending, refresh } = await useWeather();
 const setNowTime = ref(Date.now());
-const interval = ref<NodeJS.Timeout | null>(null);
+let timeInterval: NodeJS.Timeout | null = null;
+let weatherUpdateInterval: NodeJS.Timeout | null = null;
 
-onMounted(async () => {
-  await nextTick();
-  interval.value = setInterval(() => {
+onMounted(() => {
+  timeInterval = setInterval(() => {
     setNowTime.value = Date.now();
-  }, 60000); // Update every minute
+  }, 30 * 1000);
+
+  weatherUpdateInterval = setInterval(refresh, 5 * 60 * 1000);
+});
+onUnmounted(() => {
+  if (timeInterval) clearInterval(timeInterval);
+  if (weatherUpdateInterval) clearInterval(weatherUpdateInterval);
 });
 
-onUnmounted(() => {
-  if (interval.value) clearInterval(interval.value);
+const setIcon = computed<WeatherIcon>(() => {
+  if (!data.value?.current_weather) return 'partly-cloudy-day';
+
+  const { weathercode, is_day } = data.value.current_weather;
+  const iconSet = WEATHER_CODE_MAP[weathercode];
+
+  if (!iconSet) return 'partly-cloudy-day';
+  return is_day === 1 ? iconSet.day : iconSet.night;
 });
 </script>
 
 <template>
-  <Widget :pending="false" title="Copenhagen">
+  <Widget title="Copenhagen">
     <div class="city-info">
       <NuxtTime
         :datetime="setNowTime"
@@ -25,7 +38,14 @@ onUnmounted(() => {
         hour="2-digit"
         minute="2-digit"
       />
-      <LazyDynamicWeather class="text-c" @status="weatherStatus" />
+      <div class="justify-center">
+        <p v-if="pending">Getting weather report...</p>
+        <nuxt-icon
+          v-else
+          class="city-info__weather"
+          :name="`weather/${setIcon}`"
+        />
+      </div>
     </div>
   </Widget>
 </template>
@@ -37,7 +57,7 @@ onUnmounted(() => {
     opacity: 0.5;
     margin-bottom: 5px;
   }
-  ::v-deep(.dynamic-weather-icon) svg {
+  ::v-deep(.city-info__weather) svg {
     height: clamp(8rem, 8vw, 10rem);
     width: clamp(8rem, 8vw, 10rem);
   }

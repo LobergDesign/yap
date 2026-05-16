@@ -47,3 +47,5 @@ AI.md
 
 # Text Content
 TEXT_CONTENT/
+.vercel
+.env*.local
