@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/LobergDesign/yap/compare/v1.2.0...v1.3.0) (2026-06-12)
+
+
+### Features
+
+* implement dynamic weather icons and refactor widget system ([9cd994b](https://github.com/LobergDesign/yap/commit/9cd994b40d775f100389cf1d85ed98e74c9ca03f))
+* work on weather logic, cleanup and try fix build error ([104c847](https://github.com/LobergDesign/yap/commit/104c847a485d05759dca085012ebf4b44afac924))
+
 # [1.2.0](https://github.com/LobergDesign/yap/compare/v1.1.0...v1.2.0) (2026-05-14)
 
 

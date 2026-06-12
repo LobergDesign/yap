@@ -7,11 +7,11 @@
 <style lang="scss" scoped>
 .logo {
   font-size: 60px;
-  font-variation-settings: 'wght' 800;
+  font-variation-settings: 'wght' 600;
   position: relative;
 
   @include viewport-medium {
-    font-size: 125px;
+    font-size: 250px;
   }
 
   span:first-of-type,

@@ -4,11 +4,22 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: 13px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: theme-color('secondary');
+    opacity: 0.3;
+  }
   a {
     color: theme-color('secondary');
   }
   &__nav-item {
-    font-variation-settings: 'wght' 400;
+    font-variation-settings: 'wght' 500;
     transition: font-variation-settings $transition--fast;
     sub {
       color: theme-color('accent');
