@@ -1,3 +1,4 @@
+import type { Ref } from 'vue';
 import type { NuxtError } from '#app';
 
 interface ParsedError {
@@ -39,6 +40,23 @@ export const useErrorHandler = () => {
       // Just log non-fatal errors
       console.error('[Non-fatal error]', parsed.message);
     }
+  };
+
+  /**
+   * Watch an error ref from useAsyncData and route it through handleError.
+   *
+   * `immediate` is required: useAsyncData resolves before the caller can
+   * register a watcher, so on SSR the error is already set by then and a
+   * non-immediate watcher would never fire.
+   */
+  const watchError = <T>(error: Ref<T>): void => {
+    watch(
+      error,
+      (err) => {
+        if (err) handleError(err);
+      },
+      { immediate: true }
+    );
   };
 
   /**
@@ -86,5 +104,6 @@ export const useErrorHandler = () => {
 
   return {
     handleError,
+    watchError,
   };
 };

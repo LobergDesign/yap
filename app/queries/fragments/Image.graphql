@@ -1,6 +1,8 @@
 fragment ImageFragment on Image {
   image {
     url
+    width
+    height
   }
   alt
 }

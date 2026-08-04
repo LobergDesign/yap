@@ -9,16 +9,14 @@ export const useProjectCount = async () => {
     GetProjectCountQuery,
     GetProjectCountQueryVariables
   >(GetProjectCountDocument);
-  const { handleError } = useErrorHandler();
+  const { watchError } = useErrorHandler();
 
   const { data, error, pending, refresh, status } =
     await useLazyCachedFetchFactory<GetProjectCountQuery>(`project-count`, () =>
       executeQuery(),
     );
 
-  watch(error, (err) => {
-    if (err) handleError(err);
-  });
+  watchError(error);
 
   return {
     data,

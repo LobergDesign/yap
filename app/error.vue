@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app';
 
-const { error = { status: 0, statusText: '', data: {} } } = defineProps({
-  error: Object as () => NuxtError,
-});
+const { error } = defineProps<{ error: NuxtError }>();
 
 const isDev = import.meta.dev;
 
@@ -65,7 +63,7 @@ const handleClearError = () => clearError({ redirect: '/' });
         <summary>Technical Details (dev only)</summary>
         <p>
           <strong>Message:</strong>
-          {{ error?.statusText || error?.statusText }}
+          {{ error?.statusText || error?.message }}
         </p>
         <pre v-if="error?.data">{{ JSON.stringify(error.data, null, 2) }}</pre>
       </details>

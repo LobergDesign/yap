@@ -11,7 +11,7 @@ export const useProject = async (slug: string) => {
   >(GetProjectDocument, {
     slug: slug,
   });
-  const { handleError } = useErrorHandler();
+  const { watchError } = useErrorHandler();
 
   const { data, error, pending, refresh, status } =
     await useCachedFetchFactory<GetProjectQuery>(`project-${slug}`, () =>
@@ -19,9 +19,7 @@ export const useProject = async (slug: string) => {
     );
 
   // Handle errors - routes 404/500+ to error.vue
-  watch(error, (err) => {
-    if (err) handleError(err);
-  });
+  watchError(error);
 
   return {
     data,

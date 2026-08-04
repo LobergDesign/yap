@@ -9,16 +9,14 @@ export const useProjects = async () => {
     GetProjectsQuery,
     GetProjectsQueryVariables
   >(GetProjectsDocument);
-  const { handleError } = useErrorHandler();
+  const { watchError } = useErrorHandler();
 
   const { data, error, pending, refresh, status } =
     await useCachedFetchFactory<GetProjectsQuery>(`projects`, () =>
       executeQuery(),
     );
 
-  watch(error, (err) => {
-    if (err) handleError(err);
-  });
+  watchError(error);
 
   return {
     data,

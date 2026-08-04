@@ -1,4 +1,5 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import Sonda from 'sonda/nuxt';
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -6,13 +7,16 @@ export default defineNuxtConfig({
   runtimeConfig: {
     graphqlHost: process.env.GQL_HOST,
     graphqlToken: process.env.GQL_TOKEN,
-    revalidateSecret: process.env.REVALIDATE_SECRET,
   },
   nitro: {
     preset: process.env.NITRO_PRESET ?? 'vercel',
     future: {
       nativeSWR: true,
     },
+  },
+  sourcemap: {
+    client: true,
+    server: true,
   },
 
   routeRules: {
@@ -24,8 +28,9 @@ export default defineNuxtConfig({
           }
         : {},
     // Don't cache API routes (called during page regeneration only)
-    'server/api/**': {
+    '/api/**': {
       cache: false,
+      isr: false,
     },
   },
   modules: [
@@ -35,6 +40,9 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'nuxt-security',
     '@tresjs/nuxt',
+    Sonda({
+      server: true,
+    }),
   ],
   css: ['~/assets/scss/main.scss', '~/assets/scss/settings-theme.scss'],
   image: {
@@ -45,7 +53,16 @@ export default defineNuxtConfig({
       },
     },
   },
-  experimental: { payloadExtraction: 'client' },
+
+  experimental: {
+    payloadExtraction: 'client',
+    // Forward the destination route's preload hints (Hygraph hero images, etc.)
+    // into the current document as `rel="prefetch"` when a NuxtLink prefetches.
+    prefetchPreloadTags: true,
+    // Reuse Vite's chokidar watcher instead of spinning up a second one.
+    // Becomes the default under compatibilityVersion 5.
+    watcher: 'builder',
+  },
   vite: {
     css: {
       preprocessorOptions: {

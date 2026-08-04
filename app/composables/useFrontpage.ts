@@ -11,16 +11,14 @@ export const useFrontpage = async () => {
   >(GetFrontpageDocument, {
     id: CONTENT_IDS.FRONTPAGE,
   });
-  const { handleError } = useErrorHandler();
+  const { watchError } = useErrorHandler();
 
   const { data, error, pending, refresh, status } =
     await useCachedFetchFactory<GetFrontpageQuery>('frontpage', () =>
       executeQuery(),
     );
 
-  watch(error, (err) => {
-    if (err) handleError(err);
-  });
+  watchError(error);
 
   return {
     data,

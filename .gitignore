@@ -6,6 +6,9 @@
 .cache
 dist
 
+# Sonda bundle analysis reports
+.sonda
+
 # Node dependencies
 node_modules
 
