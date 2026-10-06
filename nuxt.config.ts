@@ -1,7 +1,7 @@
 import Sonda from 'sonda/nuxt';
 
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
+  compatibilityDate: '2026-09-11',
   devtools: { enabled: true },
 
   runtimeConfig: {
@@ -36,7 +36,6 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     'nuxt-icons',
-    '@nuxt/image',
     '@nuxt/fonts',
     'nuxt-security',
     '@tresjs/nuxt',
@@ -45,14 +44,14 @@ export default defineNuxtConfig({
     }),
   ],
   css: ['~/assets/scss/main.scss', '~/assets/scss/settings-theme.scss'],
-  image: {
-    providers: {
-      hygraph: {
-        baseurl:
-          'https://eu-central-1-shared-euc1-02.graphassets.com/AO0xo1wOBRUu1cYgu6oD9z',
-      },
-    },
-  },
+  // image: {
+  //   providers: {
+  //     hygraph: {
+  //       baseurl:
+  //         'https://eu-central-1-shared-euc1-02.graphassets.com/AO0xo1wOBRUu1cYgu6oD9z',
+  //     },
+  //   },
+  // },
 
   experimental: {
     payloadExtraction: 'client',

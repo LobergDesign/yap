@@ -13,3 +13,9 @@ const { data } = await useProjects();
     </ul>
   </main>
 </template>
+
+<style lang="scss" scoped>
+li {
+  margin-bottom: 5rem;
+}
+</style>

@@ -4,7 +4,7 @@ import {
   type GetProjectCountQueryVariables,
 } from '~/types/generated/graphql';
 
-export const useProjectCount = async () => {
+export const useProjectCount = () => {
   const { executeQuery } = useGraphQL<
     GetProjectCountQuery,
     GetProjectCountQueryVariables
@@ -12,7 +12,7 @@ export const useProjectCount = async () => {
   const { watchError } = useErrorHandler();
 
   const { data, error, pending, refresh, status } =
-    await useLazyCachedFetchFactory<GetProjectCountQuery>(`project-count`, () =>
+    useLazyAsyncData<GetProjectCountQuery>(`project-count`, () =>
       executeQuery(),
     );
 

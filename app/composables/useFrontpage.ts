@@ -13,12 +13,17 @@ export const useFrontpage = async () => {
   });
   const { watchError } = useErrorHandler();
 
-  const { data, error, pending, refresh, status } =
-    await useCachedFetchFactory<GetFrontpageQuery>('frontpage', () =>
-      executeQuery(),
-    );
+  const asyncData = useAsyncData<GetFrontpageQuery>('frontpage', () =>
+    executeQuery(),
+  );
 
-  watchError(error);
+  watchError(asyncData.error);
+
+  // Await the AsyncData thenable itself - this is what blocks navigation
+  // until the request settles. Destructuring it first would discard it.
+  await asyncData;
+
+  const { data, error, pending, refresh, status } = asyncData;
 
   return {
     data,

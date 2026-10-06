@@ -13,13 +13,18 @@ export const useProject = async (slug: string) => {
   });
   const { watchError } = useErrorHandler();
 
-  const { data, error, pending, refresh, status } =
-    await useCachedFetchFactory<GetProjectQuery>(`project-${slug}`, () =>
-      executeQuery(),
-    );
+  const asyncData = useAsyncData<GetProjectQuery>(`project-${slug}`, () =>
+    executeQuery(),
+  );
 
   // Handle errors - routes 404/500+ to error.vue
-  watchError(error);
+  watchError(asyncData.error);
+
+  // Await the AsyncData thenable itself - this is what blocks navigation
+  // until the request settles. Destructuring it first would discard it.
+  await asyncData;
+
+  const { data, error, pending, refresh, status } = asyncData;
 
   return {
     data,
