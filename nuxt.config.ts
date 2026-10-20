@@ -27,7 +27,7 @@ export default defineNuxtConfig({
             isr: 7200,
           }
         : {},
-    // Don't cache API routes (called during page regeneration only)
+    '/api/weather': { headers: { 'cache-control': 'public, s-maxage=300' } },
     '/api/**': {
       cache: false,
       isr: false,
@@ -38,7 +38,6 @@ export default defineNuxtConfig({
     'nuxt-icons',
     '@nuxt/fonts',
     'nuxt-security',
-    '@tresjs/nuxt',
     Sonda({
       server: true,
     }),
@@ -55,11 +54,7 @@ export default defineNuxtConfig({
 
   experimental: {
     payloadExtraction: 'client',
-    // Forward the destination route's preload hints (Hygraph hero images, etc.)
-    // into the current document as `rel="prefetch"` when a NuxtLink prefetches.
     prefetchPreloadTags: true,
-    // Reuse Vite's chokidar watcher instead of spinning up a second one.
-    // Becomes the default under compatibilityVersion 5.
     watcher: 'builder',
   },
   vite: {
@@ -74,7 +69,6 @@ export default defineNuxtConfig({
     },
     optimizeDeps: {
       include: [
-        'three',
         '@vue/devtools-core',
         '@vue/devtools-kit',
         'isomorphic-dompurify',

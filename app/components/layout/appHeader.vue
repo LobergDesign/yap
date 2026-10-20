@@ -6,7 +6,7 @@ const appConfig = useAppConfig();
     <ul class="grid-r">
       <li class="grid-c-1 place-c-l">
         <NuxtLink to="/" class="header__logo">
-          <LogoSmall />
+          <Logo />
         </NuxtLink>
       </li>
       <li class="grid-c-1 place-c-l">

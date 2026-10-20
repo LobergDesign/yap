@@ -43,11 +43,10 @@ Turn those off and the reports become useless.
 
 ## What to watch in this project
 
-| Package | Why |
-| --- | --- |
-| `three` / `@tresjs/nuxt` | 3D — large, used only by the gradient effect |
-| `gsap` | Animations, plus plugins (`ScrollTrigger`, `SplitText`) |
-| `isomorphic-dompurify` | HTML sanitizing |
+| Package                | Why                                                     |
+| ---------------------- | ------------------------------------------------------- |
+| `gsap`                 | Animations, plus plugins (`ScrollTrigger`, `SplitText`) |
+| `isomorphic-dompurify` | HTML sanitizing                                         |
 
 If one of these shows up in the initial bundle instead of a lazy chunk, that's the thing to fix — usually by making the component client-only or dynamically imported.
 

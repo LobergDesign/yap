@@ -52,6 +52,12 @@ const appConfig = useAppConfig();
           v-if="data.frontpage.introContent"
           :data="data.frontpage.introContent"
         />
+        <ThinkingOrb />
+        <Orb2 />
+        <Orb3 />
+        <!-- Working -->
+        <Orb4 />
+        <!-- Connecting -->
         <UiLink text="More about me" :href="appConfig.slugAbout" />
       </section>
       <!-- <div class="grid-r spacing-tb">
@@ -87,11 +93,11 @@ const appConfig = useAppConfig();
         />
       </section>
     </div>
-    <ClientOnly>
+    <!-- <ClientOnly>
       <LazyWidgetHandler
         v-if="data.frontpage.project?.slug"
         :project-slug="data.frontpage.project?.slug"
       />
-    </ClientOnly>
+    </ClientOnly> -->
   </main>
 </template>

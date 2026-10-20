@@ -3,7 +3,7 @@
   <footer class="footer grid-w">
     <div class="grid-r">
       <div class="grid-c-5 place-c-l">
-        <LogoLarge />
+        <Logo size="large" />
       </div>
       <div class="grid-c-1 place-c-r">
         <a href="mailto:jeanloberg@gmail.com">jeanloberg@gmail.com</a>

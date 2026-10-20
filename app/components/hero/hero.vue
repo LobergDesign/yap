@@ -64,7 +64,7 @@ watch(
       <LazyGradientEffect :primary-color :secondary-color :accent-color />
       <!-- <LazyGradientEffectTest :primary-color :secondary-color :accent-color /> -->
       <h1>
-        <LogoLarge />
+        <Logo size="large" />
       </h1>
       <p v-if="hero.text">
         {{ hero.text }}
@@ -77,7 +77,7 @@ watch(
 .hero {
   height: 100vh;
   p {
-    font-size: 11px;
+    font-size: clamp(12px, 2vw, 13px);
     max-width: 280px;
   }
 }
