@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-import { makeProj, finalizeFrame, radiusScale, type Dot, type Line } from 'thinking-orbs/engine';
+import {
+  makeProj,
+  finalizeFrame,
+  radiusScale,
+  type Dot,
+  type Line,
+} from 'thinking-orbs/engine';
 
 const { size = 64, speed = 1 } = defineProps<{
   size?: number;
@@ -50,7 +56,9 @@ const frame = (t: number) => {
 
   for (let i = 0; i < NODES; i++) {
     for (let j = i + 1; j < NODES; j++) {
-      const dist = Math.hypot(...(points[i]!.map((c, k) => c - points[j]![k]!) as Vec));
+      const dist = Math.hypot(
+        ...(points[i]!.map((c, k) => c - points[j]![k]!) as Vec),
+      );
       if (dist >= LINK_DISTANCE) continue;
       const [x1, y1, z1] = projected[i]!;
       const [x2, y2, z2] = projected[j]!;
@@ -70,7 +78,13 @@ const frame = (t: number) => {
   projected.forEach(([x, y, z], i) => {
     const depth = (z + 1) / 2;
     const pulse = 1 + 0.25 * Math.sin(t * 1.4 + i * 2.7);
-    dots.push({ x, y, z, r: (1.33 + 1.71 * depth) * pulse * rs, white: 0.55 - 0.45 * depth });
+    dots.push({
+      x,
+      y,
+      z,
+      r: (1.33 + 1.71 * depth) * pulse * rs,
+      white: 0.55 - 0.45 * depth,
+    });
   });
 
   for (let s = 0; s < SIGNALS; s++) {
@@ -79,15 +93,28 @@ const frame = (t: number) => {
     const from = points[Math.floor(hash(hop, s) * NODES)]!;
     const to = points[Math.floor(hash(hop, s + 0.5) * NODES)]!;
     const f = travel - hop;
-    const [x, y, z] = proj(...normalize(from.map((c, k) => c + (to[k]! - c) * f) as Vec));
+    const [x, y, z] = proj(
+      ...normalize(from.map((c, k) => c + (to[k]! - c) * f) as Vec),
+    );
     const depth = (z + 1) / 2;
-    dots.push({ x, y, z, r: (2 + 1.71 * depth) * rs, white: 0.05, a: 0.5 + 0.5 * depth });
+    dots.push({
+      x,
+      y,
+      z,
+      r: (2 + 1.71 * depth) * rs,
+      white: 0.05,
+      a: 0.5 + 0.5 * depth,
+    });
   }
 
   return finalizeFrame(dots, lines);
 };
 
-const { dpr } = useOrbCanvas(frame, () => size, () => speed * 3.315);
+const { dpr } = useOrbCanvas(
+  frame,
+  () => size,
+  () => speed * 3.315,
+);
 </script>
 
 <template>

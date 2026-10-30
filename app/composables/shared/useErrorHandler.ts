@@ -55,7 +55,7 @@ export const useErrorHandler = () => {
       (err) => {
         if (err) handleError(err);
       },
-      { immediate: true }
+      { immediate: true },
     );
   };
 

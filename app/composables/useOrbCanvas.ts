@@ -2,7 +2,11 @@ import { usePreferredReducedMotion, useRafFn } from '@vueuse/core';
 import { paintFrame, type OrbFrame } from 'thinking-orbs/engine';
 
 /** Animates `frame` onto the calling component's `ref="canvas"`, following the site mode and reduced motion. */
-export const useOrbCanvas = (frame: (t: number) => OrbFrame, size: () => number, speed: () => number) => {
+export const useOrbCanvas = (
+  frame: (t: number) => OrbFrame,
+  size: () => number,
+  speed: () => number,
+) => {
   const canvasRef = useTemplateRef<HTMLCanvasElement>('canvas');
   const { mode } = useSettings();
   const reducedMotion = usePreferredReducedMotion();
@@ -16,9 +20,12 @@ export const useOrbCanvas = (frame: (t: number) => OrbFrame, size: () => number,
     paintFrame(ctx, frame(t), mode.value === 'dark');
   };
 
-  const { pause, resume } = useRafFn(() => draw((performance.now() / 1000) * speed()), {
-    immediate: false,
-  });
+  const { pause, resume } = useRafFn(
+    () => draw((performance.now() / 1000) * speed()),
+    {
+      immediate: false,
+    },
+  );
 
   // canvasRef is watched because .client components render after mount, so the canvas arrives late
   watch(

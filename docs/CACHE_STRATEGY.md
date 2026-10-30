@@ -4,11 +4,11 @@ Three layers, each solving a different problem.
 
 ## The layers
 
-| Layer | Where | How long | Solves |
-| --- | --- | --- | --- |
-| **ISR** | Vercel edge | 2 hours | Visitors get a prebuilt page — no Hygraph call at all |
-| **Nuxt payload** | Client | Per session | Navigating back to a page doesn't refetch |
-| **`getCachedData`** | Client + server | Per request | Two components asking for the same data = one fetch |
+| Layer               | Where           | How long    | Solves                                                |
+| ------------------- | --------------- | ----------- | ----------------------------------------------------- |
+| **ISR**             | Vercel edge     | 2 hours     | Visitors get a prebuilt page — no Hygraph call at all |
+| **Nuxt payload**    | Client          | Per session | Navigating back to a page doesn't refetch             |
+| **`getCachedData`** | Client + server | Per request | Two components asking for the same data = one fetch   |
 
 ## 1. ISR (the big one)
 
@@ -34,7 +34,9 @@ Two composables in `app/composables/shared/`:
 
 ```ts
 const { data, error, pending, refresh, status } =
-  await useCachedFetchFactory<GetProjectQuery>(`project-${slug}`, () => executeQuery());
+  await useCachedFetchFactory<GetProjectQuery>(`project-${slug}`, () =>
+    executeQuery(),
+  );
 ```
 
 **`useLazyCachedFetchFactory`** — `lazy: true, server: false`. Client-only, doesn't block render.
@@ -42,7 +44,8 @@ const { data, error, pending, refresh, status } =
 Both use the same trick:
 
 ```ts
-getCachedData: (key) => useNuxtApp().payload.data[key] ?? useNuxtData(key).data.value;
+getCachedData: (key) =>
+  useNuxtApp().payload.data[key] ?? useNuxtData(key).data.value;
 ```
 
 Meaning: _if we already have data under this key, use it — don't fetch again._

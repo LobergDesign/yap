@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-import { makeProj, finalizeFrame, radiusScale, type Dot } from 'thinking-orbs/engine';
+import {
+  makeProj,
+  finalizeFrame,
+  radiusScale,
+  type Dot,
+} from 'thinking-orbs/engine';
 
 const { size = 64, speed = 1 } = defineProps<{
   size?: number;
@@ -16,7 +21,11 @@ const orbits = Array.from({ length: ORBITS }, () => {
   const tilt = Math.random() * Math.PI;
   return {
     u: [Math.cos(yaw), 0, Math.sin(yaw)],
-    v: [-Math.sin(yaw) * Math.sin(tilt), Math.cos(tilt), Math.cos(yaw) * Math.sin(tilt)],
+    v: [
+      -Math.sin(yaw) * Math.sin(tilt),
+      Math.cos(tilt),
+      Math.cos(yaw) * Math.sin(tilt),
+    ],
     radius: 0.45 + 0.52 * Math.random(),
     pace: (0.25 + 0.55 * Math.random()) * (Math.random() < 0.5 ? 1 : -1),
     phase: Math.random() * 2 * Math.PI,
@@ -40,17 +49,36 @@ const frame = (t: number) => {
 
     for (let k = 0; k < TRAIL; k++) {
       const { x, y, z, depth } = at((k / TRAIL) * 2 * Math.PI);
-      dots.push({ x, y, z, r: 0.9 * rs, white: 0.72, a: 0.5 * (0.4 + 0.6 * depth) });
+      dots.push({
+        x,
+        y,
+        z,
+        r: 0.9 * rs,
+        white: 0.72,
+        a: 0.5 * (0.4 + 0.6 * depth),
+      });
     }
     for (let m = 0; m < PARTICLES; m++) {
-      const { x, y, z, depth } = at(t * pace + (m / PARTICLES) * 2 * Math.PI + phase);
-      dots.push({ x, y, z, r: (1.2 + 1.6 * depth) * rs, white: 0.3 - 0.22 * depth });
+      const { x, y, z, depth } = at(
+        t * pace + (m / PARTICLES) * 2 * Math.PI + phase,
+      );
+      dots.push({
+        x,
+        y,
+        z,
+        r: (1.2 + 1.6 * depth) * rs,
+        white: 0.3 - 0.22 * depth,
+      });
     }
   }
   return finalizeFrame(dots, []);
 };
 
-const { dpr } = useOrbCanvas(frame, () => size, () => speed * 1.885);
+const { dpr } = useOrbCanvas(
+  frame,
+  () => size,
+  () => speed * 1.885,
+);
 </script>
 
 <template>

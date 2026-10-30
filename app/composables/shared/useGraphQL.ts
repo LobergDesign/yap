@@ -7,7 +7,7 @@ import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
  */
 export const useGraphQL = <TResult, TVariables extends Record<string, unknown>>(
   document: TypedDocumentNode<TResult, TVariables>,
-  variables?: TVariables
+  variables?: TVariables,
 ) => {
   const executeQuery = async () => {
     return await $fetch<TResult>('/api/cms', {

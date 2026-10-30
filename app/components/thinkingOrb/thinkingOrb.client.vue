@@ -1,7 +1,11 @@
 <script lang="ts" setup>
 import { makeProj, finalizeFrame } from 'thinking-orbs/engine';
 
-const { size = 64, count = 80, speed = 1 } = defineProps<{
+const {
+  size = 64,
+  count = 80,
+  speed = 1,
+} = defineProps<{
   size?: number;
   count?: number;
   speed?: number;
@@ -15,12 +19,22 @@ const frame = (t: number) => {
     const r = Math.sqrt(1 - y * y);
     const theta = i * 2.39996;
     const [x, py, z] = proj(Math.cos(theta) * r, y, Math.sin(theta) * r);
-    return { x, y: py, z, r: size * 0.02 * (1 + z * 0.5), white: 0.5 - z * 0.4 };
+    return {
+      x,
+      y: py,
+      z,
+      r: size * 0.02 * (1 + z * 0.5),
+      white: 0.5 - z * 0.4,
+    };
   });
   return finalizeFrame(dots, []);
 };
 
-const { dpr } = useOrbCanvas(frame, () => size, () => speed);
+const { dpr } = useOrbCanvas(
+  frame,
+  () => size,
+  () => speed,
+);
 </script>
 
 <template>

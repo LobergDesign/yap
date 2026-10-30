@@ -15,15 +15,15 @@ Hygraph fails
 
 Turns GraphQL/network problems into real HTTP status codes.
 
-| Cause | Status |
-| --- | --- |
-| `UNAUTHENTICATED` | 401 |
-| `FORBIDDEN` | 403 |
-| `BAD_USER_INPUT`, validation, parse failed | 400 |
-| `NOT_FOUND` | 404 |
-| Network error (`FetchError`) | 503 |
-| Timeout (10s limit) | 504 |
-| Anything else | 500 |
+| Cause                                      | Status |
+| ------------------------------------------ | ------ |
+| `UNAUTHENTICATED`                          | 401    |
+| `FORBIDDEN`                                | 403    |
+| `BAD_USER_INPUT`, validation, parse failed | 400    |
+| `NOT_FOUND`                                | 404    |
+| Network error (`FetchError`)               | 503    |
+| Timeout (10s limit)                        | 504    |
+| Anything else                              | 500    |
 
 - Everything is logged server-side with a tag: `[GraphQL Error]`, `[Network Error]`, `[Timeout Error]`, `[Unknown Error]`.
 - GraphQL can return errors _and_ data at once — the partial data is passed along as `data.partialData`.

@@ -26,14 +26,14 @@ How data gets from Hygraph into the app.
 
 ## Key files
 
-| File | What it does |
-| --- | --- |
-| `app/queries/*.graphql` | The queries you write |
-| `app/queries/fragments/*.graphql` | Reusable field sets (`ImageFragment`, `HeroFragment`) |
-| `codegen.ts` | Codegen config — reads the schema live from Hygraph |
-| `app/types/generated/graphql.ts` | Auto-generated. **Never edit.** |
-| `app/composables/shared/useGraphQL.ts` | Sends the query to `/api/cms` |
-| `server/api/cms.post.ts` | The proxy — adds token, handles errors |
+| File                                   | What it does                                          |
+| -------------------------------------- | ----------------------------------------------------- |
+| `app/queries/*.graphql`                | The queries you write                                 |
+| `app/queries/fragments/*.graphql`      | Reusable field sets (`ImageFragment`, `HeroFragment`) |
+| `codegen.ts`                           | Codegen config — reads the schema live from Hygraph   |
+| `app/types/generated/graphql.ts`       | Auto-generated. **Never edit.**                       |
+| `app/composables/shared/useGraphQL.ts` | Sends the query to `/api/cms`                         |
+| `server/api/cms.post.ts`               | The proxy — adds token, handles errors                |
 
 ## Fragments
 

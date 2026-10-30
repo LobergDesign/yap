@@ -27,7 +27,11 @@ const points: Vec[] = Array.from({ length: RINGS + 1 }, (_, i) => {
   const n = Math.max(1, Math.round(Math.abs(Math.cos(lat)) * DENSITY));
   return Array.from({ length: n }, (_, j): Vec => {
     const lon = (j / n) * 2 * Math.PI;
-    return [Math.cos(lat) * Math.cos(lon), Math.sin(lat), Math.cos(lat) * Math.sin(lon)];
+    return [
+      Math.cos(lat) * Math.cos(lon),
+      Math.sin(lat),
+      Math.cos(lat) * Math.sin(lon),
+    ];
   });
 }).flat();
 
@@ -37,7 +41,9 @@ const progress = (t: number) => {
   if (slot >= 2 * MOVES) return { done: 0, partial: 0 };
   const s = Math.floor(slot);
   const eased = 1 - (1 - Math.min(1, (slot - s) / 0.7)) ** 3;
-  return s < MOVES ? { done: s, partial: eased } : { done: 2 * MOVES - 1 - s, partial: 1 - eased };
+  return s < MOVES
+    ? { done: s, partial: eased }
+    : { done: 2 * MOVES - 1 - s, partial: 1 - eased };
 };
 
 const turn = ([x, y, z]: Vec, axis: Move['axis'], a: number): Vec => {
@@ -50,7 +56,13 @@ const turn = ([x, y, z]: Vec, axis: Move['axis'], a: number): Vec => {
 
 const frame = (t: number) => {
   const { done, partial } = progress(t);
-  const proj = makeProj(t * 0.55, 0.35 + 0.1 * Math.sin(t * 0.9), size / 2, size / 2, size * 0.41);
+  const proj = makeProj(
+    t * 0.55,
+    0.35 + 0.1 * Math.sin(t * 0.9),
+    size / 2,
+    size / 2,
+    size * 0.41,
+  );
   const rs = radiusScale(size, 0.6);
   const dots = points.map((p) => {
     let v = p;
@@ -75,7 +87,11 @@ const frame = (t: number) => {
   return finalizeFrame(dots, []);
 };
 
-const { dpr } = useOrbCanvas(frame, () => size, () => speed * 1.8);
+const { dpr } = useOrbCanvas(
+  frame,
+  () => size,
+  () => speed * 1.8,
+);
 </script>
 
 <template>
