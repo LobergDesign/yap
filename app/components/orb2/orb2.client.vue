@@ -1,9 +1,14 @@
 <script lang="ts" setup>
 import { makeProj, finalizeFrame, radiusScale } from 'thinking-orbs/engine';
 
-const { size = 64, speed = 1 } = defineProps<{
+const {
+  size = 64,
+  speed = 1,
+  color = 'primary',
+} = defineProps<{
   size?: number;
   speed?: number;
+  color?: OrbColor;
 }>();
 
 type Vec = [number, number, number];
@@ -91,6 +96,7 @@ const { dpr } = useOrbCanvas(
   frame,
   () => size,
   () => speed * 1.8,
+  () => color,
 );
 </script>
 

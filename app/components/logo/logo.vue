@@ -21,7 +21,7 @@ const { size = 'small' } = defineProps<{ size?: 'small' | 'large' }>();
   }
 
   &--large {
-    font-size: clamp(60px, 18vw, 250px);
+    font-size: clamp(60px, 15vw, 250px);
   }
 
   &__paren {

@@ -5,10 +5,12 @@ const {
   size = 64,
   count = 80,
   speed = 1,
+  color = 'primary',
 } = defineProps<{
   size?: number;
   count?: number;
   speed?: number;
+  color?: OrbColor;
 }>();
 
 const frame = (t: number) => {
@@ -34,6 +36,7 @@ const { dpr } = useOrbCanvas(
   frame,
   () => size,
   () => speed,
+  () => color,
 );
 </script>
 

@@ -1,9 +1,6 @@
-import Sonda from 'sonda/nuxt';
-
 export default defineNuxtConfig({
   compatibilityDate: '2026-09-11',
   devtools: { enabled: true },
-
   runtimeConfig: {
     graphqlHost: process.env.GQL_HOST,
     graphqlToken: process.env.GQL_TOKEN,
@@ -33,15 +30,7 @@ export default defineNuxtConfig({
       isr: false,
     },
   },
-  modules: [
-    '@nuxt/eslint',
-    'nuxt-icons',
-    '@nuxt/fonts',
-    'nuxt-security',
-    Sonda({
-      server: true,
-    }),
-  ],
+  modules: ['@nuxt/eslint', 'nuxt-icons', '@nuxt/fonts', 'nuxt-security'],
   css: ['~/assets/scss/main.scss', '~/assets/scss/settings-theme.scss'],
   // image: {
   //   providers: {
@@ -136,6 +125,7 @@ export default defineNuxtConfig({
     },
   },
   imports: {
+    presets: [{ from: 'gsap', imports: ['gsap'] }],
     dirs: [
       // Scan top-level composables
       '~/composables',

@@ -69,3 +69,34 @@ button {
   opacity: 1;
   background-color: theme-color('accent');
 }
+
+// new
+$icon-size: 35px;
+.cta-new {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.4rem;
+  padding: 0.6rem 3rem;
+  position: relative;
+  vertical-align: middle;
+  color: theme-color('primary');
+  font-variation-settings: 'wght' 500;
+  &::after {
+    content: '';
+    border: 1px solid theme-color('secondary');
+    background-color: theme-color('secondary');
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.7;
+    border-radius: 10px;
+    z-index: -1;
+  }
+  .orb4 {
+    padding-left: 5px;
+    width: $icon-size !important;
+    height: $icon-size !important;
+  }
+}

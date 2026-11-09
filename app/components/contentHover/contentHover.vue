@@ -1,11 +1,12 @@
 <script lang="ts" setup>
+import { SplitText } from 'gsap/SplitText';
+
 defineProps<{
   title: string;
   large?: boolean;
 }>();
 
-const { gsap, SplitText } = useGsap();
-
+const root = useTemplateRef('root');
 const wordTrack = useTemplateRef('wordTrack');
 const wordTween = shallowRef<gsap.core.Tween | null>(null);
 
@@ -27,21 +28,17 @@ const initword = () => {
 const play = () => wordTween.value?.play();
 const pause = () => wordTween.value?.pause();
 
-onUnmounted(() => wordTween.value?.kill());
-
-// splittext effect
-
-onMounted(() => {
-  nextTick(initword);
+useGsap(() => {
+  initword();
   SplitText.create('.card__hovered-text', {
     type: 'chars', // only split into words and lines (not characters)
     mask: 'lines', // adds extra wrapper element around lines with overflow: clip (v3.13.0+)
     linesClass: 'line++', // adds "line" class to each line element, plus an incremented one too ("line1", "line2", "line3", etc.)
   });
-});
+}, root);
 </script>
 <template>
-  <div class="content-hover" @mouseenter="play" @mouseleave="pause">
+  <div ref="root" class="content-hover" @mouseenter="play" @mouseleave="pause">
     <slot />
 
     <div class="content-hover__hovered" :class="large && 'large'">

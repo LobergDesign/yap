@@ -13,5 +13,3 @@ defineProps<{
     <div class="inner-line" />
   </NuxtLink>
 </template>
-
-<style lang="scss" scoped></style>

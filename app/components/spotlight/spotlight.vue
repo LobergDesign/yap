@@ -14,7 +14,7 @@ defineProps<{
 </script>
 <template>
   <div class="spotlight">
-    <NuxtLink v-if="image" :to="`/projects/${linkHref}`">
+    <NuxtLink v-if="image" :to="setFullProjectPath(linkHref)">
       <UiImage :image="image" class="spotlight__image" />
     </NuxtLink>
     <div class="grid-r">
@@ -25,7 +25,7 @@ defineProps<{
         <p v-if="subHeader" class="h3">{{ subHeader }}</p>
       </div>
       <div class="grid-c-12 grid-c-sm-2 spotlight__link">
-        <UiLink text="Go to project" :href="`/projects/${linkHref}`" />
+        <UiLink text="Go to project" :href="setFullProjectPath(linkHref)" />
       </div>
     </div>
   </div>

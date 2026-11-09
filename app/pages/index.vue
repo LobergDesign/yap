@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 const { data } = await useFrontpage();
-const appConfig = useAppConfig();
 // const cards = [
 //   {
 //     type: 'codepen',
@@ -52,13 +51,13 @@ const appConfig = useAppConfig();
           v-if="data.frontpage.introContent"
           :data="data.frontpage.introContent"
         />
-        <ThinkingOrb />
+        <!-- <ThinkingOrb />
         <Orb2 />
         <Orb3 />
-        <!-- Working -->
-        <Orb4 />
+        <Orb4 /> -->
         <!-- Connecting -->
-        <UiLink text="More about me" :href="appConfig.slugAbout" />
+        <!-- <UiLink text="More about me" :href="routePath.FRONTPAGE" /> -->
+        <UiLinkNew text="More about me" :href="routePath.FRONTPAGE" />
       </section>
       <!-- <div class="grid-r spacing-tb">
         <div

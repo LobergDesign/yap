@@ -2,7 +2,6 @@
 const { slug } = defineProps<{
   slug: string;
 }>();
-const appConfig = useAppConfig();
 const { data } = await useProject(slug);
 </script>
 
@@ -11,7 +10,7 @@ const { data } = await useProject(slug);
     <NuxtLink
       v-if="data?.project"
       class="widget__body"
-      :to="`${appConfig.slugProjects}/${data.project.slug}`"
+      :to="setFullProjectPath(data.project.slug)"
     >
       <UiTypeIcon
         v-if="data.project.projectCaseType"

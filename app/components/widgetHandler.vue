@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-import { gsap } from 'gsap';
 defineProps<{
   projectSlug?: string;
 }>();
 
+const root = useTemplateRef('root');
+let ctx: gsap.Context | undefined;
 const target = '.widget-box';
 const tween = shallowRef<gsap.core.Tween | null>(null);
 const gap = 10;
@@ -30,32 +31,35 @@ const stackElements = () => {
   });
 };
 
-onMounted(() => {
-  setTimeout(() => {
-    requestAnimationFrame(stackElements);
+// Animations started later (timer, clicks) go through ctx.add so they are reverted on unmount too
+useGsap((self) => {
+  ctx = self;
+  const timer = setTimeout(() => {
+    requestAnimationFrame(() => self.add(stackElements));
   }, 1500);
-});
+  return () => clearTimeout(timer);
+}, root);
 
 const remove = (e: MouseEvent) => {
   const el = e.currentTarget as HTMLElement;
-  gsap.to(el, {
-    duration: 0.4,
-    y: '+=60',
-    opacity: 0,
-    autoAlpha: 0,
-    ease: 'power3.in',
-    onComplete: () => {
-      el.parentElement?.removeChild(el);
-      stackElements();
-    },
-  });
+  ctx?.add(() =>
+    gsap.to(el, {
+      duration: 0.4,
+      y: '+=60',
+      opacity: 0,
+      autoAlpha: 0,
+      ease: 'power3.in',
+      onComplete: () => {
+        el.parentElement?.removeChild(el);
+        ctx?.add(stackElements);
+      },
+    }),
+  );
 };
-// Cleanup on unmount
-onUnmounted(() => tween.value?.kill());
 </script>
 
 <template>
-  <div>
+  <div ref="root">
     <WidgetProject
       v-if="projectSlug"
       class="widget-box"

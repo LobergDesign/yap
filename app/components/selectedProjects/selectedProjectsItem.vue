@@ -4,13 +4,11 @@ type Project = NonNullable<GetProjectsQuery['projects'][number]>;
 defineProps<{
   project: Project;
 }>();
-
-const appConfig = useAppConfig();
 </script>
 <template>
   <NuxtLink
     v-if="project"
-    :to="`${appConfig.slugProjects}/${project.slug}`"
+    :to="setFullProjectPath(project.slug)"
     class="grid-r selected-projects-item"
   >
     <ContentHover :title="project.title" large>

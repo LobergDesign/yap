@@ -5,22 +5,22 @@ const appConfig = useAppConfig();
   <header class="header grid-w">
     <ul class="grid-r">
       <li class="grid-c-1 place-c-l">
-        <NuxtLink to="/" class="header__logo">
+        <NuxtLink :to="routePath.FRONTPAGE" class="header__logo">
           <Logo />
         </NuxtLink>
       </li>
       <li class="grid-c-1 place-c-l">
-        <NuxtLink :to="appConfig.slugProjects" class="header__nav-item"
+        <NuxtLink :to="routePath.PROJECTS" class="header__nav-item"
           >Projects<sub><LazyProjectCount /></sub
         ></NuxtLink>
       </li>
       <li class="grid-c-1 place-c-l">
-        <NuxtLink :to="appConfig.slugAbout" class="header__nav-item"
+        <NuxtLink :to="routePath.ABOUT" class="header__nav-item"
           >About</NuxtLink
         >
       </li>
       <li class="grid-c-1 place-c-l">
-        <NuxtLink :to="appConfig.slugContact" class="header__nav-item"
+        <NuxtLink :to="routePath.CONTACT" class="header__nav-item"
           >Contact</NuxtLink
         >
       </li>

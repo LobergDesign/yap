@@ -6,9 +6,14 @@ import {
   type Dot,
 } from 'thinking-orbs/engine';
 
-const { size = 64, speed = 1 } = defineProps<{
+const {
+  size = 64,
+  speed = 1,
+  color = 'primary',
+} = defineProps<{
   size?: number;
   speed?: number;
+  color?: OrbColor;
 }>();
 
 const ORBITS = 12;
@@ -78,6 +83,7 @@ const { dpr } = useOrbCanvas(
   frame,
   () => size,
   () => speed * 1.885,
+  () => color,
 );
 </script>
 

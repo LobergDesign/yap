@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { gsap } from 'gsap';
 const { primaryColor, secondaryColor, accentColor } = defineProps<{
   primaryColor: string;
   secondaryColor: string;
@@ -16,34 +15,33 @@ const effect2 = computed(
 );
 
 const gradientEffectRef = useTemplateRef('gradientEffect');
-let tween: gsap.core.Tween | null = null;
+let ctx: gsap.Context | undefined;
 
-const startAnimation = () => {
-  if (tween) {
-    tween.kill();
-  }
-  if (gradientEffectRef.value) {
-    tween = gsap.fromTo(
-      gradientEffectRef.value,
-      { width: '100%', height: '100%', background: effect1.value },
-      {
-        ease: 'none',
-        duration: 18,
-        background: effect2.value,
-        repeat: -1,
-        yoyo: true,
-      },
-    );
-  }
+const animate = () => {
+  if (!gradientEffectRef.value) return;
+  gsap.fromTo(
+    gradientEffectRef.value,
+    { width: '100%', height: '100%', background: effect1.value },
+    {
+      ease: 'none',
+      duration: 18,
+      background: effect2.value,
+      repeat: -1,
+      yoyo: true,
+    },
+  );
 };
 
-onMounted(async () => {
-  await nextTick();
-  startAnimation();
+// The template ref of a .client component is not set yet in onMounted, so wait a tick
+useGsap((self) => {
+  ctx = self;
+  nextTick(() => self.add(animate));
 });
 
+// Restart inside the context so the new tween is still reverted on unmount
 watch([() => primaryColor, () => secondaryColor, () => accentColor], () => {
-  startAnimation();
+  ctx?.revert();
+  ctx?.add(animate);
 });
 </script>
 <template>

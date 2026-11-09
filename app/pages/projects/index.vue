@@ -6,7 +6,7 @@ const { data } = await useProjects();
     <h1>Projects</h1>
     <ul>
       <li v-for="value in data?.projects" :key="value.slug">
-        <NuxtLink :to="`projects/${value.slug}`">
+        <NuxtLink :to="setFullProjectPath(value.slug)">
           {{ value }}
         </NuxtLink>
       </li>

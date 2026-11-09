@@ -12,7 +12,7 @@
         <a
           href="https://www.linkedin.com/in/jean-loberg-hansen-3847567a/"
           target="_blank"
-          to="/about"
+          :to="routePath.ABOUT"
           >LinkedIn</a
         >
       </div>
