@@ -7,6 +7,8 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: process.env.NITRO_PRESET ?? 'vercel',
+    // graphql 17's conditional exports confuse file tracing: only .mjs gets copied, but Vercel's Node resolves index.js
+    externals: { inline: ['graphql'] },
     future: {
       nativeSWR: true,
     },
