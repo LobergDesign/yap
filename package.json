@@ -34,7 +34,7 @@
     "@golar/vue": "0.1.11",
     "@graphql-codegen/cli": "8.0.0",
     "@graphql-codegen/typed-document-node": "8.0.0",
-    "@graphql-codegen/typescript": "7.0.0",
+    "@graphql-codegen/typescript": "7.0.1",
     "@graphql-codegen/typescript-operations": "7.0.0",
     "@nuxt/eslint": "1.17.0",
     "@types/node": "26.6.6",
