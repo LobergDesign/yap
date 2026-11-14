@@ -43,7 +43,7 @@
     "eslint-plugin-baseline-js": "0.7.7",
     "golar": "0.1.11",
     "knip": "6.44.2",
-    "sass": "1.108.1",
+    "sass": "1.108.2",
     "typescript": "7.0.2"
   }
 }
