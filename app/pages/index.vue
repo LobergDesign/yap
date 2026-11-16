@@ -1,5 +1,12 @@
 <script lang="ts" setup>
-const { data } = await useFrontpage();
+const { data, error } = await useFetch('/api/frontpage');
+if (error.value) {
+  throw createError({
+    status: error.value.status,
+    statusText: error.value.statusText,
+    fatal: true,
+  });
+}
 // const cards = [
 //   {
 //     type: 'codepen',
@@ -56,8 +63,8 @@ const { data } = await useFrontpage();
         <Orb3 />
         <Orb4 /> -->
         <!-- Connecting -->
-        <!-- <UiLink text="More about me" :href="routePath.FRONTPAGE" /> -->
-        <UiLinkNew text="More about me" :href="routePath.FRONTPAGE" />
+        <!-- <UiLink text="More about me" :href="RouteName.FRONTPAGE" /> -->
+        <UiLinkNew text="More about me" :to="{ name: RouteName.ABOUT }" />
       </section>
       <!-- <div class="grid-r spacing-tb">
         <div

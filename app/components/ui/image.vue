@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ImageFragmentFragment } from '~/types/generated/graphql';
+import type { ImageFragmentFragment } from '#shared/types/generated/graphql';
 const { lazy = true } = defineProps<{
   image: ImageFragmentFragment;
   lazy?: boolean;

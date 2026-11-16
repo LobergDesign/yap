@@ -10,7 +10,7 @@ const { data } = await useProject(slug);
     <NuxtLink
       v-if="data?.project"
       class="widget__body"
-      :to="setFullProjectPath(data.project.slug)"
+      :to="{ name: RouteName.PROJECT, params: { slug: data.project.slug } }"
     >
       <UiTypeIcon
         v-if="data.project.projectCaseType"

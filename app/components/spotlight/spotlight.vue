@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { GetFrontpageQuery } from '~/types/generated/graphql';
+import type { GetFrontpageQuery } from '#shared/types/generated/graphql';
 
 type SpotlightData = NonNullable<
   NonNullable<GetFrontpageQuery['frontpage']>['spotlight']
@@ -14,7 +14,10 @@ defineProps<{
 </script>
 <template>
   <div class="spotlight">
-    <NuxtLink v-if="image" :to="setFullProjectPath(linkHref)">
+    <NuxtLink
+      v-if="image"
+      :to="{ name: RouteName.PROJECT, params: { slug: linkHref } }"
+    >
       <UiImage :image="image" class="spotlight__image" />
     </NuxtLink>
     <div class="grid-r">
@@ -25,7 +28,10 @@ defineProps<{
         <p v-if="subHeader" class="h3">{{ subHeader }}</p>
       </div>
       <div class="grid-c-12 grid-c-sm-2 spotlight__link">
-        <UiLink text="Go to project" :href="setFullProjectPath(linkHref)" />
+        <UiLink
+          text="Go to project"
+          :to="{ name: RouteName.PROJECT, params: { slug: linkHref } }"
+        />
       </div>
     </div>
   </div>

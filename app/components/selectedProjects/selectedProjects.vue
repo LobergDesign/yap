@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { GetFrontpageQuery } from '~/types/generated/graphql';
+import type { GetFrontpageQuery } from '#shared/types/generated/graphql';
 
 type Frontpage = NonNullable<GetFrontpageQuery['frontpage']>;
 
@@ -36,7 +36,7 @@ const selectedProjects = computed(() => {
         </template>
         <p v-else>no projects...</p>
       </div>
-      <UiLink text="See all projects" :href="appConfig.slugProjects"
+      <UiLink text="See all projects" :to="{ name: RouteName.PROJECTS }"
         ><LazyProjectCount
       /></UiLink>
     </div>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { HeroFragmentFragment } from '~/types/generated/graphql';
+import type { HeroFragmentFragment } from '#shared/types/generated/graphql';
 const { hero } = defineProps<{
   hero: HeroFragmentFragment;
 }>();

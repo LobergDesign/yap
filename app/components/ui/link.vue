@@ -1,11 +1,13 @@
 <script lang="ts" setup>
+import type { RouteLocationRaw } from 'vue-router';
+
 defineProps<{
-  href: string;
+  to: RouteLocationRaw;
   text: string;
 }>();
 </script>
 <template>
-  <NuxtLink :to="href" class="cta">
+  <NuxtLink :to class="cta">
     {{ text }}
     <slot></slot>
     <nuxt-icon name="arrow" />

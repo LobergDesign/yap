@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { GetProjectsQuery } from '~/types/generated/graphql';
+import type { GetProjectsQuery } from '#shared/types/generated/graphql';
 type Project = NonNullable<GetProjectsQuery['projects'][number]>;
 defineProps<{
   project: Project;
@@ -8,7 +8,7 @@ defineProps<{
 <template>
   <NuxtLink
     v-if="project"
-    :to="setFullProjectPath(project.slug)"
+    :to="{ name: RouteName.PROJECT, params: { slug: project.slug } }"
     class="grid-r selected-projects-item"
   >
     <ContentHover :title="project.title" large>

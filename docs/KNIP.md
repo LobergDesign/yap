@@ -48,5 +48,5 @@ Use this when the code _is_ used but knip can't tell — dynamic imports, config
 ## Gotchas
 
 - **Auto-imported composables can look unused.** Knip understands Nuxt auto-imports, but if something is only referenced in a template it can still get flagged — check before deleting.
-- Generated files (`app/types/generated/graphql.ts`) may show unused exports. That's normal — codegen emits types for every query whether or not you use them all.
+- Generated files (`shared/types/generated/graphql.ts`) may show unused exports. That's normal — codegen emits types for every query whether or not you use them all.
 - Knip suggests, it doesn't decide. Read each hit before removing anything.

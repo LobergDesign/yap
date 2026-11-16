@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ContentSideBySideFragmentFragment } from '~/types/generated/graphql';
+import type { ContentSideBySideFragmentFragment } from '#shared/types/generated/graphql';
 
 defineProps<{
   data: ContentSideBySideFragmentFragment;

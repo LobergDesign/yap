@@ -1,9 +1,7 @@
-export const routePath = {
-  FRONTPAGE: '/',
-  ABOUT: '/about',
-  PROJECTS: '/projects',
-  CONTACT: '/contact',
-};
-
-export const setFullProjectPath = (path: string) =>
-  `${routePath.PROJECTS}/${path}`;
+export const RouteName = {
+  FRONTPAGE: 'index',
+  ABOUT: 'about',
+  PROJECTS: 'projects',
+  PROJECT: 'projects-slug',
+  CONTACT: 'contact',
+} as const;

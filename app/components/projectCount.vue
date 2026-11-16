@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { data } = await useProjectCount();
+const { data } = useLazyFetch('/api/project-count');
 </script>
 <template>
   <ClientOnly>

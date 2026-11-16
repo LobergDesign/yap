@@ -1,13 +1,14 @@
 <script lang="ts" setup>
+import type { RouteLocationRaw } from 'vue-router';
+
 defineProps<{
-  href: string;
+  to: RouteLocationRaw;
   text: string;
 }>();
 </script>
 <template>
-  <NuxtLink :to="href" class="cta-new">
+  <NuxtLink :to class="cta-new">
     {{ text }}
-
     <Orb4 />
   </NuxtLink>
 </template>

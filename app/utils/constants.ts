@@ -1,9 +1,5 @@
 import type { CurrentWeatherDetail } from '../types/shared/weather';
 
-export const CONTENT_IDS = {
-  FRONTPAGE: 'clfphu0ts2qwi0bw7k89o3da6',
-} as const;
-
 export const CLEAR_DAY: CurrentWeatherDetail = {
   day: 'clear-day',
   night: 'clear-night',

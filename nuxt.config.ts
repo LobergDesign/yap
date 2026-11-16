@@ -18,18 +18,10 @@ export default defineNuxtConfig({
     server: true,
   },
 
-  routeRules: {
-    // Cache all pages for 2 hours in production only
-    '/**':
-      process.env.NODE_ENV === 'production'
-        ? {
-            isr: 7200,
-          }
-        : {},
-    '/api/weather': { headers: { 'cache-control': 'public, s-maxage=300' } },
-    '/api/**': {
-      cache: false,
-      isr: false,
+  $production: {
+    routeRules: {
+      '/**': { isr: 7200 },
+      '/api/weather': { isr: 300 },
     },
   },
   modules: ['@nuxt/eslint', 'nuxt-icons', '@nuxt/fonts', 'nuxt-security'],
@@ -47,6 +39,7 @@ export default defineNuxtConfig({
     payloadExtraction: 'client',
     prefetchPreloadTags: true,
     watcher: 'builder',
+    typedPages: true,
   },
   vite: {
     css: {

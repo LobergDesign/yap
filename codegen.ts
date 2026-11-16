@@ -11,9 +11,9 @@ const config: CodegenConfig = {
       },
     },
   },
-  documents: 'app/queries/**/*.graphql',
+  documents: 'server/graphql/**/*.graphql',
   generates: {
-    'app/types/generated/graphql.ts': {
+    'shared/types/generated/graphql.ts': {
       // `typescript-operations` v6 is self-sufficient: it emits the enums and
       // input types the operations actually use. Adding the `typescript`
       // plugin here would re-declare those same names in this file (oxc parse
