@@ -39,7 +39,7 @@
     "@nuxt/eslint": "1.17.0",
     "@types/node": "26.6.6",
     "dotenv": "18.0.10",
-    "eslint": "10.14.0",
+    "eslint": "10.15.0",
     "eslint-plugin-baseline-js": "0.7.7",
     "golar": "0.1.11",
     "knip": "6.44.2",
